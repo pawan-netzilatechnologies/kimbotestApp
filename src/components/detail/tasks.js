@@ -1,3 +1,4 @@
+
 import react from "react";
 import { Card } from "reactstrap";
 
@@ -6,8 +7,5 @@ return(
 <Card>
 Task
 </Card>
-
-
 )
-
 }

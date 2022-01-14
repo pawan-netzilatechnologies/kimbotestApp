@@ -88,13 +88,8 @@ function Header() {
               </Card>
             </Col>
           </Row>
-          
-                     
-          
-          
         </Navbar>
       </div>
   );
 }
-
 export default Header;

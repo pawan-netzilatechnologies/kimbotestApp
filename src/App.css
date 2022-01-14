@@ -26,6 +26,7 @@ nav.navbar.navbar-expand-md {	background: #00ac8c !important;}
 .account-dropdown ul li a {	text-decoration: none;	color: #000;}
 .account-dropdown ul li a:hover, .account-dropdown ul li a:focus{color:#00ac8c;}
 .account-dropdown::before {	content: "";	width: 0;	height: 0;	border-left: 8px solid transparent;	border-right: 8px solid transparent;	border-bottom: 16px solid #e5e5e5;	top: -16px;	position: absolute;	right: 10px;}
+
 /*MEMBERS SECTION CSS */
 .section-title.card {	border: none;}
 .card {	border: none !important; background: transparent !important;}
@@ -189,3 +190,4 @@ td {	border: none !important;}
 .shareholders-block table .text-right {	text-align: right;}
 .shareholders-block table td a:last-child{margin-right: 0;}
 .promoter-section .sidebar-block h3.card-title {	margin-bottom: 20px;}
+.navbar .row {	align-items: center;}
