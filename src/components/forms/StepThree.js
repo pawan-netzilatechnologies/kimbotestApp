@@ -15,11 +15,17 @@ import icon3 from "../../images/step-icon-3.jpg";
 import icon4 from "../../images/step-icon-4.jpg";
 import icon5 from "../../images/step-icon-5.jpg";
 
-export default function StepThree() {
+export default function StepThree({steps, setSteps}) {
   const [open, setOpen] = useState(false);
   const showTooltip = () => {
     setOpen(!open);
   };
+  const saveData = () => {
+    setSteps(4)  
+  }
+  const backStep = () =>{
+    setSteps(2)  
+  }
   return (
     <Card className="steps-block">
       <Card className="section-title">
@@ -133,7 +139,7 @@ export default function StepThree() {
       <Card className="steps-form shareholder-form">
         <Card className="section-title">
           <CardTitle tag="h2">
-            <strong>Information about other shareholder</strong>
+            <strong>Information about other director</strong>
           </CardTitle>
         </Card>
         <Form>
@@ -157,8 +163,8 @@ export default function StepThree() {
           </FormGroup>
 
           <FormGroup className="step-from-btn">
-            <Button>Back</Button>
-            <Button>Save & Next</Button>
+            <Button onClick={backStep}>Back</Button>
+            <Button onClick={saveData}>Save & Next</Button>
           </FormGroup>
         </Form>
       </Card>

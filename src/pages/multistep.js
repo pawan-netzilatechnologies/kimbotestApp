@@ -7,28 +7,53 @@ import StepFour from "../components/forms/StepFour";
 
 export default function Multistep() {
   const [steps, setSteps] = useState(1);
+  const [myform, setMyForm] = useState({
+    companyName: '',
+    componyActivity: '',
+    incorporated: true,
+    uen: '',
+    beneficialOwner: true,
+    shareholders : true,
+    firstName: '',
+    lastName: '',
+    email: '',
+    mobilenumber: '',
+    permanentResident: true,
+    directors: true,
+    directrfirstName: '',
+    directrlastName: '',
+    directremail: '',
+    directrmobilenumber: [],
+  })
+ 
   const handleSteps = (ev, stp) => {
-    var dots = document.querySelectorAll("li");
+    if(steps > stp) {
+      setSteps(stp);
+    }
+  };
+  function activeSteps (stp) {
+    var dots = document.getElementsByClassName("allSteps");
     for (var n = 0; n < dots.length; ++n) {
-      if (dots[n] !== this) {
-        dots[n].className = "";
+      if (n < stp) {
+        dots[n].classList.add("active");
+      }else{
+      dots[n].classList.remove("active");
       }
     }
-    ev.currentTarget.classList.add("active");
-    setSteps(stp);
-  };
+  }
   const renderFunction = (params) => {
+    activeSteps(steps);
     switch (params) {
       case 1:
-        return <StepOne />;
+        return <StepOne setMyForm={setMyForm} myform={myform} setSteps={setSteps} />;
       case 2:
-        return <StepTwo />;
+        return <StepTwo setMyForm={setMyForm} myform={myform} setSteps={setSteps} />;
       case 3:
-        return <StepThree />;
+        return <StepThree setMyForm={setMyForm} myform={myform} setSteps={setSteps} />;
       case 4:
-        return <StepFour />;
+        return <StepFour setMyForm={setMyForm} myform={myform} setSteps={setSteps} />;
       default:
-        return <StepOne />;
+        return <StepOne setMyForm={setMyForm} myform={myform} setSteps={setSteps} />;
     }
   };
   return (
@@ -36,22 +61,22 @@ export default function Multistep() {
       <Container>
         <Card className="steps-bar">
           <List>
-            <li className="active" onClick={(ev) => handleSteps(ev, 1)}>
+            <li className="allSteps active" onClick={(ev) => handleSteps(ev, 1)}>
               <a href="#">
                 <span>1</span>Business information
               </a>
             </li>
-            <li onClick={(ev) => handleSteps(ev, 2)}>
+            <li className="allSteps" onClick={(ev) => handleSteps(ev, 2)}>
               <a href="#">
                 <span>2</span>Directors
               </a>
             </li>
-            <li onClick={(ev) => handleSteps(ev, 3)}>
+            <li className="allSteps" onClick={(ev) => handleSteps(ev, 3)}>
               <a href="#">
                 <span>3</span>Shareholders
               </a>
             </li>
-            <li onClick={(ev) => handleSteps(ev, 4)}>
+            <li className="allSteps" onClick={(ev) => handleSteps(ev, 4)}>
               <a href="#">
                 <span>4</span>Address
               </a>

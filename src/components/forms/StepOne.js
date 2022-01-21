@@ -16,11 +16,49 @@ import icon2 from "../../images/step-icon-2.jpg";
 import icon3 from "../../images/step-icon-3.jpg";
 import icon4 from "../../images/step-icon-4.jpg";
 
-export default function StepOne() {
+export default function StepOne({myform, setSteps, setMyForm}) {
   const [open, setOpen] = useState(false);
+  const [checkBusiness, setCheckBusiness] = useState("existing");
+  const handleInputChange = (ev, name) => {
+    setMyForm({...myform , [name]: ev.target.value})
+  }
   const showTooltip = () => {
     setOpen(!open);
   };
+  const saveData = () => {
+    var error =false;
+    if(checkBusiness == 'existing'){
+      if(myform.companyName == "") {
+        error = true;
+      }else if(myform.uen == "") {
+        error = true;
+      }else if(myform.componyActivity == "") {
+        error = true;
+      }
+    }else{
+      if(myform.companyName == "") {
+        error = true;
+      }else if(myform.componyActivity == "") {
+        error = true;
+      }
+    }
+    if(error == false) {
+      setSteps(2)  
+    }
+  }
+  const backStep = () => {
+    setSteps(1)  
+  }
+  const selectValue = (ev, name) => {
+    setCheckBusiness(name)
+    var dots = document.getElementsByClassName("firstStep");
+    for (var n = 0; n < dots.length; ++n) {
+      if (dots[n] !== this) {
+        dots[n].classList.remove("active")
+      }
+    }
+    ev.currentTarget.classList.add("active");
+  }
   return (
     <Card className="steps-block">
       <Card className="section-title">
@@ -31,7 +69,7 @@ export default function StepOne() {
       </Card>
       <Row>
         <Col xs="6">
-          <Card className="steps-detail-block">
+          <Card className="steps-detail-block firstStep" onClick={(ev) => selectValue(ev, "existing")}>
             <img src={icon1} />
             <CardText>
               This is an existing <br />
@@ -41,7 +79,7 @@ export default function StepOne() {
           </Card>
         </Col>
         <Col xs="6">
-          <Card className="steps-detail-block">
+          <Card className="steps-detail-block firstStep" onClick={(ev) => selectValue(ev, "new")}>
             <img src={icon2} />
             <CardText>
               This is a new business <br />
@@ -51,7 +89,7 @@ export default function StepOne() {
           </Card>
         </Col>
       </Row>
-
+    {checkBusiness == "new" ? 
       <Card className="steps-form">
         <Card className="section-title">
           <CardTitle tag="h2">
@@ -64,17 +102,19 @@ export default function StepOne() {
               name=""
               placeholder="Company name - first choice"
               type="text"
+              value={myform.companyName}
+              onChange={(ev) => handleInputChange(ev, 'companyName')}
             />
             <Button>Check</Button>
           </FormGroup>
 
           <FormGroup>
-            <Input id="exampleSelect" name="select" type="select">
-              <option>SSIC - Company activity</option>
-              <option>SSIC - Company activity-1</option>
-              <option>SSIC - Company activity-2</option>
-              <option>SSIC - Company activity-3</option>
-              <option>SSIC - Company activity-4</option>
+            <Input id="exampleSelect" name="select" type="select" value={myform.componyActivity}  onChange={(ev) => handleInputChange(ev, 'componyActivity')}>
+              <option value="SSIC - Company activity">SSIC - Company activity</option>
+              <option value="SSIC - Company activity-1">SSIC - Company activity-1</option>
+              <option value="SSIC - Company activity-2">SSIC - Company activity-2</option>
+              <option value="SSIC - Company activity-3">SSIC - Company activity-3</option>
+              <option value="SSIC - Company activity-4">SSIC - Company activity-4</option>
             </Input>
             <div>
               <a
@@ -107,11 +147,13 @@ export default function StepOne() {
           </FormGroup>
 
           <FormGroup className="step-from-btn">
-            <Button>Back</Button>
-            <Button>Save & Next</Button>
+            <Button onClick={backStep}>Back</Button>
+            <Button onClick={saveData}>Save & Next</Button>
           </FormGroup>
         </Form>
       </Card>
+      :
+      <>
       <Card className="step-business-section">
         <Card className="section-title">
           <CardTitle tag="h2">
@@ -140,22 +182,22 @@ export default function StepOne() {
           </Col>
         </Row>
       </Card>
-
+  
       <Card className="steps-form">
         <Card className="section-title">
           <CardTitle tag="h2">
-            <strong>About your new business</strong>
+            <strong>Information about your existing Singapore company</strong>
           </CardTitle>
         </Card>
         <Form>
           <FormGroup>
-            <Input name="" placeholder="UEN" type="text" />
+            <Input name="" placeholder="UEN" type="text" value={myform.uen} onChange={(ev) => handleInputChange(ev, 'uen')}/>
             <Button>Check</Button>
-            <Input name="" placeholder="Company name" type="text" />
+            <Input name="" placeholder="Company name" type="text" value={myform.companyName} onChange={(ev) => handleInputChange(ev, 'companyName')}/>
           </FormGroup>
 
           <FormGroup>
-            <Input id="exampleSelect" name="select" type="select">
+            <Input id="exampleSelect" name="select" type="select" value={myform.componyActivity} onChange={(ev) => handleInputChange(ev, 'componyActivity')}>
               <option>SSIC - Company activity</option>
               <option>SSIC - Company activity-1</option>
               <option>SSIC - Company activity-2</option>
@@ -193,11 +235,13 @@ export default function StepOne() {
           </FormGroup>
 
           <FormGroup className="step-from-btn">
-            <Button>Back</Button>
-            <Button>Save & Next</Button>
+            <Button onClick={backStep}>Back</Button>
+            <Button onClick={saveData}>Save & Next</Button>
           </FormGroup>
         </Form>
       </Card>
+      </>
+}
     </Card>
   );
 }

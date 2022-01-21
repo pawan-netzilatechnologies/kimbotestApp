@@ -14,11 +14,31 @@ import {
 import icon3 from "../../images/step-icon-3.jpg";
 import icon4 from "../../images/step-icon-4.jpg";
 
-export default function StepTwo() {
+export default function StepTwo({myform, setSteps, setMyForm}) {
   const [open, setOpen] = useState(false);
   const showTooltip = () => {
     setOpen(!open);
   };
+  const saveData = () => {
+    if(myform.beneficialOwner == "" || myform.shareholders == ""  || myform.firstName == "" || myform.lastName == "" || myform.email == ""){
+
+    }else{
+      setSteps(3)
+    }  
+  }
+  const backStep = () => {
+    setSteps(1)  
+  }
+  const handleOwnerChange = (ev, name) => {
+    setMyForm({...myform , [name]: ev})
+  }
+  const handleShareChange = (ev, name) => {
+    setMyForm({...myform , [name]: ev})
+  }
+  const handleInputChange = (ev, name) => {
+    setMyForm({...myform , [name]: ev.target.value})
+  }
+
   return (
     <Card className="steps-block">
       <Card className="section-title">
@@ -59,7 +79,7 @@ export default function StepTwo() {
       </Card>
       <Row>
         <Col xs="6">
-          <Card className="steps-detail-block">
+          <Card className="steps-detail-block" onClick={(ev) => handleOwnerChange(true, 'beneficialOwner')}>
             <img src={icon3} />
             <CardText>
               Yes, I am the ultimate
@@ -71,7 +91,7 @@ export default function StepTwo() {
           </Card>
         </Col>
         <Col xs="6">
-          <Card className="steps-detail-block">
+          <Card className="steps-detail-block" onClick={(ev) => handleOwnerChange(false, 'beneficialOwner')}>
             <img src={icon4} />
             <CardText>
               No, I am not the
@@ -117,7 +137,7 @@ export default function StepTwo() {
         </Card>
         <Row>
           <Col xs="6">
-            <Card className="steps-detail-block">
+            <Card className="steps-detail-block" onClick={(ev) => handleShareChange(true, 'shareholders')}>
               <img src={icon3} />
               <CardText>
                 Yes, there are other
@@ -129,7 +149,7 @@ export default function StepTwo() {
             </Card>
           </Col>
           <Col xs="6">
-            <Card className="steps-detail-block">
+            <Card className="steps-detail-block" onClick={(ev) => handleShareChange(true, 'shareholders')}>
               <img src={icon4} />
               <CardText>
                 No, I am the only
@@ -151,27 +171,27 @@ export default function StepTwo() {
         </Card>
         <Form>
           <FormGroup>
-            <Input name="" placeholder="First Name" type="text" />
-            <Input name="" placeholder="Last name" type="text" />
+            <Input name="" placeholder="First Name" type="text" onChange={(ev) => handleInputChange(ev, 'firstName')}/>
+            <Input name="" placeholder="Last name" type="text" onChange={(ev) => handleInputChange(ev, 'lastName')} />
           </FormGroup>
           <FormGroup>
             <div className="email-check">
-              <Input name="" placeholder="Email address" type="email" />
+              <Input name="" placeholder="Email address" type="email" onChange={(ev) => handleInputChange(ev, 'email')}/>
               <Button>Check</Button>
             </div>
 
-            <Input name="" placeholder="Mobile number" type="text" />
+            <Input name="" placeholder="Mobile number" type="text" onChange={(ev) => handleInputChange(ev, 'mobilenumber')}/>
           </FormGroup>
           <FormGroup>
-            <Input name="" placeholder="Mobile number" type="text" />
+            <Input name="" placeholder="Mobile number" type="text" onChange={(ev) => handleInputChange(ev, 'mobilenumber')}/>
             <div className="add-another">
               <Button>Add another</Button>
             </div>
           </FormGroup>
 
           <FormGroup className="step-from-btn">
-            <Button>Back</Button>
-            <Button>Save & Next</Button>
+            <Button onClick={backStep}>Back</Button>
+            <Button onClick={saveData}>Save & Next</Button>
           </FormGroup>
         </Form>
       </Card>

@@ -13,7 +13,13 @@ import {
   Input,
 } from "reactstrap";
 
-export default function StepFour() {
+export default function StepFour({steps, setSteps}) {
+  const saveData = () => {
+    setSteps(4)  
+  }
+  const backStep = () =>{
+    setSteps(3)  
+  }
   return (
     <Card className="steps-block">
       <Card className="steps-form">
@@ -41,8 +47,8 @@ export default function StepFour() {
 
         <Form>
           <FormGroup className="step-from-btn">
-            <Button className="step-last-back">Back</Button>
-            <Button>Save & Next</Button>
+            <Button className="step-last-back" onClick={backStep}>Back</Button>
+            <Button onClick={saveData}>Save & Next</Button>
           </FormGroup>
         </Form>
       </Card>
