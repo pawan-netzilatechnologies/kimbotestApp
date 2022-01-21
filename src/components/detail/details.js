@@ -1,217 +1,306 @@
-import react from "react";
-import { Card, CardText, CardTitle, Col, Form, FormGroup, List, Row, Input, Table } from "reactstrap";
+import react, { useState } from "react";
+import {
+  Card,
+  CardText,
+  CardTitle,
+  Col,
+  Form,
+  FormGroup,
+  List,
+  Row,
+  Input,
+  Table,
+} from "reactstrap";
 import member1 from "../../images/member1.png";
 import member2 from "../../images/member2.png";
 import member3 from "../../images/member3.png";
 import shareicon from "../../images/share-icon.png";
-import locationicon from "../../images/location-icon.png"
+import locationicon from "../../images/location-icon.png";
+import shareedit from "../../images/share-edit.png";
+import EditBusinessName from "../popup/edit-business-name";
+import RemoveShareholder from "../popup/remove-shareholder";
+import NewShareholder from "../popup/new-shareholder";
+import NewOfficer from "../popup/new-officer";
+import ChangeAddress from "../popup/change-address";
+import PaidUp from "../popup/paid-up";
+import Share from "../popup/share";
+import Information from "../popup/information";
 
 export default function Detail() {
-return(
+  const [show, setShow] = useState(false);
+  const [show2, setShow2] = useState(false);
+  const [show3, setShow3] = useState(false);
+  const [show4, setShow4] = useState(false);
+  const [show5, setShow5] = useState(false);
+  const [show6, setShow6] = useState(false);
+  const [show7, setShow7] = useState(false);
+  const [show10, setShow10] = useState(false);
+  const showPopup = () => {
+    setShow(true);
+  };
+  const showPopup2 = () => {
+    setShow2(true);
+  };
+  const showPopup3 = () => {
+    setShow3(true);
+  };
+  const showPopup4 = () => {
+    setShow4(true);
+  };
+  const showPopup5 = () => {
+    setShow5(true);
+  };
+  const showPopup6 = () => {
+    setShow6(true);
+  };
+  const showPopup7 = () => {
+    setShow7(true);
+  };
+  const showPopup10 = () => {
+    setShow10(true);
+  };
 
+  return (
     <Row>
-        <Col xs="8">
-          <Card className="detail-business-block">
+      {show ? <EditBusinessName show={show} setShow={setShow} /> : ""}
+      {show2 ? <RemoveShareholder show2={show2} setShow2={setShow2} /> : ""}
+      {show3 ? <NewShareholder show3={show3} setShow3={setShow3} /> : ""}
+      {show4 ? <NewOfficer show4={show4} setShow4={setShow4} /> : ""}
+      {show5 ? <ChangeAddress show5={show5} setShow5={setShow5} /> : ""}
+      {show6 ? <PaidUp show6={show6} setShow6={setShow6} /> : ""}
+      {show7 ? <Share show7={show7} setShow7={setShow7} /> : ""}
+      {show10 ? <Information show10={show10} setShow10={setShow10} /> : ""}
+      <Col xs="8">
+        <Card className="detail-business-block">
           <Card className="detail-business-header">
-          <CardTitle tag="h3">Business Name</CardTitle>
-          <a href="#">Edit</a>
+            <CardTitle tag="h3">Business Name</CardTitle>
+            <a href="#" onClick={showPopup}>
+              Edit
+            </a>
           </Card>
-         
-            <List>
-               <li><h4>Company ABC</h4><p>Formally known as Company XYZ</p></li>
-            </List>
-         </Card>
 
-         <Card className="detail-business-block detail-business-acitivity">
+          <List>
+            <li>
+              <h4>Company ABC</h4>
+              <p>Formally known as Company XYZ</p>
+            </li>
+          </List>
+        </Card>
+
+        <Card className="detail-business-block detail-business-acitivity">
           <Card className="detail-business-header">
-          <CardTitle tag="h3">Business Activity</CardTitle>
-          <a href="#">Edit</a>
+            <CardTitle tag="h3">Business Activity</CardTitle>
+            <a href="#" onClick={showPopup10}>
+              Edit
+            </a>
           </Card>
-         
-            <Form>
-              <FormGroup>
-              <Input
-                    id="exampleSelect"
-                    name="select"
-                    type="select"
-            >
-                    <option>
-                    Primary Activity
-                    </option>
-                    <option>
-                    Primary activity-1
-                    </option>
-                    <option>
-                    Primary activity-2
-                    </option>
-                    <option>
-                    Primary activity-3
-                    </option>
-                    <option>
-                    Primary activity-4
-                    </option>
-            </Input>
-            <Input
-                    id="exampleSelect"
-                    name="select"
-                    type="select"
-            >
-                    <option>
-                    Secondary Activity
-                    </option>
-                    <option>
-                    Secondary activity-1
-                    </option>
-                    <option>
-                    Secondary activity-2
-                    </option>
-                    <option>
-                    Secondary activity-3
-                    </option>
-                    <option>
-                    Secondary activity-4
-                    </option>
-            </Input>
 
-              </FormGroup>
+          <Form>
+            <FormGroup>
+              <Input id="exampleSelect" name="select" type="select">
+                <option>Primary Activity</option>
+                <option>Primary activity-1</option>
+                <option>Primary activity-2</option>
+                <option>Primary activity-3</option>
+                <option>Primary activity-4</option>
+              </Input>
+              <Input id="exampleSelect" name="select" type="select">
+                <option>Secondary Activity</option>
+                <option>Secondary activity-1</option>
+                <option>Secondary activity-2</option>
+                <option>Secondary activity-3</option>
+                <option>Secondary activity-4</option>
+              </Input>
+            </FormGroup>
+          </Form>
+        </Card>
 
-            </Form>
-         </Card>
-
-         <Card className="detail-business-block shareholders-block">
+        <Card className="detail-business-block shareholders-block">
           <Card className="detail-business-header">
-          <CardTitle tag="h3">Shareholders Name</CardTitle>
-          <a href="#">Add</a>
+            <CardTitle tag="h3">Shareholders Name</CardTitle>
+            <a href="#" onClick={showPopup3}>
+              Add
+            </a>
           </Card>
-         
+
           <Table responsive>
-                <thead>
-                    <tr>
-                    <th className="text-center">
-                    Name
-                    </th>
-                    <th className="text-center">
-                    Ordinary number / Currency
-                    </th>
-                    <th className="text-center">
-                    Date of appointment
-                    </th>
-                    <th>
-                    Actions
-                    </th>
-                    
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                    <td className="text-center">
-                    First Name Last Name
-                    </td>
-                    <td className="text-center">
-                    100 / USD
-                    </td>
-                    <td className="text-center">
-                    2021-04-15
-                    </td>
-                    <td>
-                        <a href="#">Edit</a>
-                        <a href="#">Resign</a>
-                    </td>
-                    </tr>
-                
-                
-                </tbody>
-           </Table>
-         </Card>
+            <thead>
+              <tr>
+                <th className="text-center">Name</th>
+                <th className="text-center">Ordinary number / Currency</th>
+                <th className="text-center">Date of appointment</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="text-center">First Name Last Name</td>
+                <td className="text-center">100 / USD</td>
+                <td className="text-center">2021-04-15</td>
+                <td>
+                  <a href="#" onClick={showPopup2}>
+                    Edit
+                  </a>
+                  <a href="#">Resign</a>
+                </td>
+              </tr>
+            </tbody>
+          </Table>
+        </Card>
 
-         <Card className="detail-business-block shareholders-block">
+        <Card className="detail-business-block shareholders-block">
           <Card className="detail-business-header">
-          <CardTitle tag="h3">Officers / Authorised Representatives</CardTitle>
-          <a href="#">Add</a>
+            <CardTitle tag="h3">
+              Officers / Authorised Representatives
+            </CardTitle>
+            <a href="#" onClick={showPopup4}>
+              Add
+            </a>
           </Card>
-         
+
           <Table responsive>
-                <thead>
-                    <tr>
-                    <th className="text-center">
-                    Name
-                    </th>
-                    <th className="text-center">
-                    Ordinary number / Currency
-                    </th>
-                    <th className="text-center">
-                    Date of appointment
-                    </th>
-                    <th>
-                    Actions
-                    </th>
-                    
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                    <td className="text-center">
-                    First Name Last Name
-                    </td>
-                    <td className="text-center">
-                    Singapore / Director
-                    </td>
-                    <td className="text-center">
-                    2021-12-01
-                    </td>
-                    <td>
-                        <a href="#">Edit</a>
-                        <a href="#">Resign</a>
-                    </td>
-                    </tr>
-                
-                
-                </tbody>
-           </Table>
-         </Card>
+            <thead>
+              <tr>
+                <th className="text-center">Name</th>
+                <th className="text-center">Ordinary number / Currency</th>
+                <th className="text-center">Date of appointment</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="text-center">First Name Last Name</td>
+                <td className="text-center">Singapore / Director</td>
+                <td className="text-center">2021-12-01</td>
+                <td>
+                  <a href="#">Edit</a>
+                  <a href="#">Resign</a>
+                </td>
+              </tr>
+            </tbody>
+          </Table>
+        </Card>
 
-        </Col>
-        <Col xs="4">
-<Card className="sidebar-block">
-<List>
-<li>
-    <h4>Ultimate beneficial owner</h4>
-    <span><img src={ member1 }/></span>
-</li>
-<li>
-    <h4>Ultimate beneficial owner</h4>
-    <span><img src={ member1 }/><img src={ member2 }/><img src={ member3 }/></span>
-</li>
+        <Card className="detail-business-block shareholders-block share-capital-block">
+          <Card className="detail-business-header">
+            <CardTitle tag="h3">Share capital</CardTitle>
+            <a href="#" onClick={showPopup7}>
+              Amendment in progress
+            </a>
+          </Card>
 
-</List>
+          <Table responsive>
+            <thead>
+              <tr>
+                <th className="text-center">Issued share capital amount</th>
+                <th className="text-center">Number of shares*</th>
+                <th className="text-center">Currency</th>
+                <th>Share type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="text-center">
+                  200,000 <img src={shareedit} />
+                </td>
+                <td className="text-center">200,000</td>
+                <td className="text-center">USD</td>
+                <td>Ordinary</td>
+              </tr>
+            </tbody>
+          </Table>
+          <CardText className="number-share-text">
+            Number of shares including treasury shares*
+          </CardText>
+        </Card>
 
-</Card>
+        <Card className="detail-business-block shareholders-block share-capital-block">
+          <Card className="detail-business-header">
+            <CardTitle tag="h3">Paid-up capital</CardTitle>
+            <a href="#" onClick={showPopup6}>
+              Amendment in progress
+            </a>
+          </Card>
 
-<Card className="sidebar-block text-center">
-<CardTitle tag="h3">Increase share capital</CardTitle>
-<img src={shareicon}/>
-<CardText>
-Share capital consists of all funds raised by a company in
-exchange for common or preferred shares of stock. A company
-that wishes to raise more equity can issue and sell additional
-shares, thereby increasing its share capital.
-</CardText>
-<a href="#">Increase share capital</a>
-</Card>
+          <Table responsive>
+            <thead>
+              <tr>
+                <th>Issued share capital amount</th>
 
-<Card className="sidebar-block text-center">
-<CardTitle tag="h3">Change registered address</CardTitle>
-<img src={ locationicon }/>
-<CardText>
-You can change your business's registered address here. Must
-be an address in Singapore and cannot be a PO.Box number.
-</CardText>
-<a href="#">Change registered address</a>
-</Card>
-            
-        </Col>
+                <th>Currency</th>
+                <th>Share type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  200,000 <img src={shareedit} />
+                </td>
+
+                <td>USD</td>
+                <td>Ordinary</td>
+              </tr>
+            </tbody>
+          </Table>
+        </Card>
+
+        <Card className="detail-business-block shareholders-block share-capital-block">
+          <Card className="detail-business-header">
+            <CardTitle tag="h3">Registered address</CardTitle>
+            <a href="#" onClick={showPopup5}>
+              Amendment in progress
+            </a>
+          </Card>
+
+          <CardText className="registered-address-text">
+            123 Building Name Street Name Level and Unit number Country Postcode
+          </CardText>
+        </Card>
+      </Col>
+      <Col xs="4">
+        <Card className="sidebar-block">
+          <List>
+            <li>
+              <h4>Ultimate beneficial owner</h4>
+              <span>
+                <img src={member1} />
+              </span>
+            </li>
+            <li>
+              <h4>Ultimate beneficial owner</h4>
+              <span>
+                <img src={member1} />
+                <img src={member2} />
+                <img src={member3} />
+              </span>
+            </li>
+          </List>
+        </Card>
+
+        <Card className="sidebar-block text-center">
+          <CardTitle tag="h3">Increase share capital</CardTitle>
+          <img src={shareicon} />
+          <CardText>
+            Share capital consists of all funds raised by a company in exchange
+            for common or preferred shares of stock. A company that wishes to
+            raise more equity can issue and sell additional shares, thereby
+            increasing its share capital.
+          </CardText>
+          <a href="#">Increase share capital</a>
+        </Card>
+
+        <Card className="sidebar-block text-center">
+          <CardTitle tag="h3">Change registered address</CardTitle>
+          <img src={locationicon} />
+          <CardText>
+            You can change your business's registered address here. Must be an
+            address in Singapore and cannot be a PO.Box number.
+          </CardText>
+          <a href="#" onClick={showPopup5}>
+            Change registered address
+          </a>
+        </Card>
+      </Col>
     </Row>
-
-
-)
+  );
 }
