@@ -19,6 +19,9 @@ import icon4 from "../../images/step-icon-4.jpg";
 export default function StepOne({myform, setSteps, setMyForm}) {
   const [open, setOpen] = useState(false);
   const [checkBusiness, setCheckBusiness] = useState("existing");
+  const [error, setError] = useState(false);
+  const [activityError, setActivityError] = useState(false);
+  const [uenError, setUenError] = useState(false);
   const handleInputChange = (ev, name) => {
     setMyForm({...myform , [name]: ev.target.value})
   }
@@ -29,16 +32,24 @@ export default function StepOne({myform, setSteps, setMyForm}) {
     var error =false;
     if(checkBusiness == 'existing'){
       if(myform.companyName == "") {
+        setError(true)
         error = true;
-      }else if(myform.uen == "") {
+      }
+       if(myform.uen == "") {
+        setUenError(true);
         error = true;
-      }else if(myform.componyActivity == "") {
+      }
+       if(myform.componyActivity == "") {
+        setActivityError(true);
         error = true;
       }
     }else{
       if(myform.companyName == "") {
+        setError(true)
         error = true;
-      }else if(myform.componyActivity == "") {
+      }
+      if(myform.componyActivity == "") {
+        setActivityError(true);
         error = true;
       }
     }
@@ -52,6 +63,20 @@ export default function StepOne({myform, setSteps, setMyForm}) {
   const selectValue = (ev, name) => {
     setCheckBusiness(name)
     var dots = document.getElementsByClassName("firstStep");
+    for (var n = 0; n < dots.length; ++n) {
+      if (dots[n] !== this) {
+        dots[n].classList.remove("active")
+      }
+    }
+    ev.currentTarget.classList.add("active");
+  }
+  const handleCheckName = () => {
+    if(myform.companyName == "") {
+      setError(true)
+    }
+  }
+  const handleCorporate = (ev) =>{
+    var dots = document.getElementsByClassName("secondStep");
     for (var n = 0; n < dots.length; ++n) {
       if (dots[n] !== this) {
         dots[n].classList.remove("active")
@@ -104,12 +129,13 @@ export default function StepOne({myform, setSteps, setMyForm}) {
               type="text"
               value={myform.companyName}
               onChange={(ev) => handleInputChange(ev, 'companyName')}
+              invalid={error}
             />
-            <Button>Check</Button>
+            <Button onClick={handleCheckName}>Check</Button>
           </FormGroup>
 
           <FormGroup>
-            <Input id="exampleSelect" name="select" type="select" value={myform.componyActivity}  onChange={(ev) => handleInputChange(ev, 'componyActivity')}>
+            <Input id="exampleSelect" invalid={activityError} name="select" type="select" value={myform.componyActivity}  onChange={(ev) => handleInputChange(ev, 'componyActivity')}>
               <option value="SSIC - Company activity">SSIC - Company activity</option>
               <option value="SSIC - Company activity-1">SSIC - Company activity-1</option>
               <option value="SSIC - Company activity-2">SSIC - Company activity-2</option>
@@ -163,7 +189,7 @@ export default function StepOne({myform, setSteps, setMyForm}) {
         </Card>
         <Row>
           <Col xs="6">
-            <Card className="steps-detail-block">
+            <Card className="steps-detail-block secondStep" onClick={(ev) => {handleCorporate(ev)}}>
               <img src={icon3} />
               <CardText>
                 Yes, it is incorporated in <br />
@@ -172,7 +198,7 @@ export default function StepOne({myform, setSteps, setMyForm}) {
             </Card>
           </Col>
           <Col xs="6">
-            <Card className="steps-detail-block">
+            <Card className="steps-detail-block secondStep" onClick={(ev) => {handleCorporate(ev)}}>
               <img src={icon4} />
               <CardText>
                 No, it is not incorporated <br />
@@ -191,13 +217,13 @@ export default function StepOne({myform, setSteps, setMyForm}) {
         </Card>
         <Form>
           <FormGroup>
-            <Input name="" placeholder="UEN" type="text" value={myform.uen} onChange={(ev) => handleInputChange(ev, 'uen')}/>
-            <Button>Check</Button>
-            <Input name="" placeholder="Company name" type="text" value={myform.companyName} onChange={(ev) => handleInputChange(ev, 'companyName')}/>
+            <Input name="" placeholder="UEN" type="text" invalid={uenError} value={myform.uen} onChange={(ev) => handleInputChange(ev, 'uen')}/>
+            <Button onClick={handleCheckName}>Check</Button>
+            <Input name="" placeholder="Company name" invalid={error} type="text" value={myform.companyName} onChange={(ev) => handleInputChange(ev, 'companyName')}/>
           </FormGroup>
 
           <FormGroup>
-            <Input id="exampleSelect" name="select" type="select" value={myform.componyActivity} onChange={(ev) => handleInputChange(ev, 'componyActivity')}>
+            <Input id="exampleSelect" name="select" invalid={activityError} type="select" value={myform.componyActivity} onChange={(ev) => handleInputChange(ev, 'componyActivity')}>
               <option>SSIC - Company activity</option>
               <option>SSIC - Company activity-1</option>
               <option>SSIC - Company activity-2</option>

@@ -16,29 +16,90 @@ import icon4 from "../../images/step-icon-4.jpg";
 
 export default function StepTwo({myform, setSteps, setMyForm}) {
   const [open, setOpen] = useState(false);
+  const [firstError, setFirstError] = useState(false);
+  const [lastError, setLastError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [mobError, setMobError] = useState(false);
+  const [nationError, setNationError] = useState(false);
   const showTooltip = () => {
     setOpen(!open);
   };
   const saveData = () => {
-    if(myform.beneficialOwner == "" || myform.shareholders == ""  || myform.firstName == "" || myform.lastName == "" || myform.email == ""){
-
-    }else{
+    setFirstError(false)
+    setLastError(false);
+    setEmailError(false)
+    setMobError(false)
+    setNationError(false)
+    var error = false;
+    if(myform.firstName == ""){
+      setFirstError(true)
+      error= true;
+    } 
+    if(myform.lastName == "" ){
+      setLastError(true)
+      error= true;
+    } 
+    if(myform.email == "" || !validateEmail(myform.email)){
+      setEmailError(true)
+      error= true;
+    }
+    if(myform.mobilenumber ==""){
+      setMobError(true)
+      error= true;
+    } 
+    if(myform.nationality == ""){
+      setNationError(true)
+      error= true;
+    }
+    if(error == false){
       setSteps(3)
-    }  
+    }
+      
   }
   const backStep = () => {
     setSteps(1)  
   }
-  const handleOwnerChange = (ev, name) => {
-    setMyForm({...myform , [name]: ev})
+  const validateEmail = (email) => {
+  return email.match(
+    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  );
+};
+  const handleOwnerChange = (ev, value, name) => {
+    var dots = document.getElementsByClassName("firstStep");
+    for (var n = 0; n < dots.length; ++n) {
+      if (dots[n] !== this) {
+        dots[n].classList.remove("active")
+      }
+    }
+    ev.currentTarget.classList.add("active");
+    setMyForm({...myform , [name]: value})
   }
-  const handleShareChange = (ev, name) => {
-    setMyForm({...myform , [name]: ev})
+  const handleShareChange = (ev, value, name) => {
+    var dots = document.getElementsByClassName("secondStep");
+    for (var n = 0; n < dots.length; ++n) {
+      if (dots[n] !== this) {
+        dots[n].classList.remove("active")
+      }
+    }
+    ev.currentTarget.classList.add("active");
+    setMyForm({...myform , [name]: value})
   }
   const handleInputChange = (ev, name) => {
     setMyForm({...myform , [name]: ev.target.value})
   }
-
+  const handleCheckEmail = () => {
+    console.log(validateEmail(myform.email));
+    if(myform.email == ""){
+      setEmailError(true)
+      return false;
+    }else if(!validateEmail(myform.email)){
+      console.log("erro");
+      setEmailError(true)
+      return false; 
+    }else{
+      setEmailError(false)
+    }
+  }
   return (
     <Card className="steps-block">
       <Card className="section-title">
@@ -79,7 +140,7 @@ export default function StepTwo({myform, setSteps, setMyForm}) {
       </Card>
       <Row>
         <Col xs="6">
-          <Card className="steps-detail-block" onClick={(ev) => handleOwnerChange(true, 'beneficialOwner')}>
+          <Card className="steps-detail-block firstStep active" onClick={(ev) => handleOwnerChange(ev, true, 'beneficialOwner')}>
             <img src={icon3} />
             <CardText>
               Yes, I am the ultimate
@@ -91,7 +152,7 @@ export default function StepTwo({myform, setSteps, setMyForm}) {
           </Card>
         </Col>
         <Col xs="6">
-          <Card className="steps-detail-block" onClick={(ev) => handleOwnerChange(false, 'beneficialOwner')}>
+          <Card className="steps-detail-block firstStep" onClick={(ev) => handleOwnerChange(ev, false, 'beneficialOwner')}>
             <img src={icon4} />
             <CardText>
               No, I am not the
@@ -137,7 +198,7 @@ export default function StepTwo({myform, setSteps, setMyForm}) {
         </Card>
         <Row>
           <Col xs="6">
-            <Card className="steps-detail-block" onClick={(ev) => handleShareChange(true, 'shareholders')}>
+            <Card className="steps-detail-block secondStep active" onClick={(ev) => handleShareChange(ev, true, 'shareholders')}>
               <img src={icon3} />
               <CardText>
                 Yes, there are other
@@ -149,7 +210,7 @@ export default function StepTwo({myform, setSteps, setMyForm}) {
             </Card>
           </Col>
           <Col xs="6">
-            <Card className="steps-detail-block" onClick={(ev) => handleShareChange(true, 'shareholders')}>
+            <Card className="steps-detail-block secondStep" onClick={(ev) => handleShareChange(ev, false, 'shareholders')}>
               <img src={icon4} />
               <CardText>
                 No, I am the only
@@ -171,19 +232,19 @@ export default function StepTwo({myform, setSteps, setMyForm}) {
         </Card>
         <Form>
           <FormGroup>
-            <Input name="" placeholder="First Name" type="text" onChange={(ev) => handleInputChange(ev, 'firstName')}/>
-            <Input name="" placeholder="Last name" type="text" onChange={(ev) => handleInputChange(ev, 'lastName')} />
+            <Input name="" value={myform.firstName} invalid={firstError} placeholder="First Name" type="text" onChange={(ev) => handleInputChange(ev, 'firstName')}/>
+            <Input name="" value={myform.lastName}  invalid={lastError} placeholder="Last name" type="text" onChange={(ev) => handleInputChange(ev, 'lastName')} />
           </FormGroup>
           <FormGroup>
             <div className="email-check">
-              <Input name="" placeholder="Email address" type="email" onChange={(ev) => handleInputChange(ev, 'email')}/>
-              <Button>Check</Button>
+              <Input name="" value={myform.email} invalid={emailError} placeholder="Email address" type="email" onChange={(ev) => handleInputChange(ev, 'email')}/>
+              <Button onClick={handleCheckEmail}>Check</Button>
             </div>
 
-            <Input name="" placeholder="Mobile number" type="text" onChange={(ev) => handleInputChange(ev, 'mobilenumber')}/>
+            <Input name="" invalid={mobError} value={myform.mobilenumber} placeholder="Mobile number" type="text" onChange={(ev) => handleInputChange(ev, 'mobilenumber')}/>
           </FormGroup>
           <FormGroup>
-            <Input name="" placeholder="Mobile number" type="text" onChange={(ev) => handleInputChange(ev, 'mobilenumber')}/>
+            <Input name="" value={myform.nationality} invalid={nationError} placeholder="Nationality" type="text" onChange={(ev) => handleInputChange(ev, 'nationality')}/>
             <div className="add-another">
               <Button>Add another</Button>
             </div>

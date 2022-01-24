@@ -18,12 +18,14 @@ export default function Multistep() {
     lastName: '',
     email: '',
     mobilenumber: '',
+    nationality: '',
     permanentResident: true,
     directors: true,
     directrfirstName: '',
     directrlastName: '',
     directremail: '',
-    directrmobilenumber: [],
+    directrmobilenumber: '',
+    directrnationality: '',
   })
  
   const handleSteps = (ev, stp) => {

@@ -15,16 +15,90 @@ import icon3 from "../../images/step-icon-3.jpg";
 import icon4 from "../../images/step-icon-4.jpg";
 import icon5 from "../../images/step-icon-5.jpg";
 
-export default function StepThree({steps, setSteps}) {
+export default function StepThree({myform, setSteps, setMyForm}) {
   const [open, setOpen] = useState(false);
+  const [firstError, setFirstError] = useState(false);
+  const [lastError, setLastError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [mobError, setMobError] = useState(false);
+  const [nationError, setNationError] = useState(false);
   const showTooltip = () => {
     setOpen(!open);
   };
   const saveData = () => {
-    setSteps(4)  
+    setFirstError(false)
+    setLastError(false);
+    setEmailError(false)
+    setMobError(false)
+    setNationError(false)
+    var error = false;
+    if(myform.directrfirstName == ""){
+      setFirstError(true)
+      error= true;
+    } 
+    if(myform.directrlastName == "" ){
+      setLastError(true)
+      error= true;
+    } 
+    if(myform.directremail == ""){
+      setEmailError(true)
+      error= true;
+    }
+    if(myform.directrmobilenumber ==""){
+      setMobError(true)
+      error= true;
+    } 
+    if(myform.directrnationality == ""){
+      setNationError(true)
+      error= true;
+    }
+    if(error == false){
+      setSteps(4)
+    }
   }
   const backStep = () =>{
     setSteps(2)  
+  }
+  const handleOwnerChange = (ev, value, name) => {
+    var dots = document.getElementsByClassName("firstStep");
+    for (var n = 0; n < dots.length; ++n) {
+      if (dots[n] !== this) {
+        dots[n].classList.remove("active")
+      }
+    }
+    ev.currentTarget.classList.add("active");
+    setMyForm({...myform , [name]: value})
+  }
+  const handleShareChange = (ev, value, name) => {
+    var dots = document.getElementsByClassName("secondStep");
+    for (var n = 0; n < dots.length; ++n) {
+      if (dots[n] !== this) {
+        dots[n].classList.remove("active")
+      }
+    }
+    ev.currentTarget.classList.add("active");
+    setMyForm({...myform , [name]: value})
+  }
+  const handleInputChange = (ev, name) => {
+    setMyForm({...myform , [name]: ev.target.value})
+  }
+  const validateEmail = (email) => {
+    return email.match(
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+  };
+  const handleCheckEmail = () => {
+    console.log(validateEmail(myform.email));
+    if(myform.email == ""){
+      setEmailError(true)
+      return false;
+    }else if(!validateEmail(myform.email)){
+      console.log("erro");
+      setEmailError(true)
+      return false; 
+    }else{
+      setEmailError(false)
+    }
   }
   return (
     <Card className="steps-block">
@@ -65,13 +139,13 @@ export default function StepThree({steps, setSteps}) {
       </Card>
       <Row>
         <Col xs="6">
-          <Card className="steps-detail-block">
+          <Card className="steps-detail-block firstStep active" onClick={(ev) => handleOwnerChange(ev, true, 'permanentResident')}>
             <img src={icon3} />
             <CardText>I am a Singaporean/PR</CardText>
           </Card>
         </Col>
         <Col xs="6">
-          <Card className="steps-detail-block">
+          <Card className="steps-detail-block firstStep" onClick={(ev) => handleOwnerChange(ev, false, 'permanentResident')}>
             <img src={icon5} />
             <CardText>I am a foreigner</CardText>
           </Card>
@@ -114,7 +188,7 @@ export default function StepThree({steps, setSteps}) {
         </Card>
         <Row>
           <Col xs="6">
-            <Card className="steps-detail-block">
+            <Card className="steps-detail-block secondStep active" onClick={(ev) => handleShareChange(ev, true, 'directors')}>
               <img src={icon3} />
               <CardText>
                 Yes, there are other
@@ -124,7 +198,7 @@ export default function StepThree({steps, setSteps}) {
             </Card>
           </Col>
           <Col xs="6">
-            <Card className="steps-detail-block">
+            <Card className="steps-detail-block secondStep" onClick={(ev) => handleShareChange(ev, false, 'directors')}>
               <img src={icon4} />
               <CardText>
                 No, I am the only
@@ -144,19 +218,19 @@ export default function StepThree({steps, setSteps}) {
         </Card>
         <Form>
           <FormGroup>
-            <Input name="" placeholder="First Name" type="text" />
-            <Input name="" placeholder="Last name" type="text" />
+            <Input name="" value={myform.directrfirstName} invalid={firstError} onChange={(ev) => handleInputChange(ev, 'directrfirstName')} placeholder="First Name" type="text" />
+            <Input name=""  value={myform.directrlastName} invalid={lastError} onChange={(ev) => handleInputChange(ev, 'directrlastName')} placeholder="Last name" type="text" />
           </FormGroup>
           <FormGroup>
             <div className="email-check">
-              <Input name="" placeholder="Email address" type="email" />
-              <Button>Check</Button>
+              <Input name="" value={myform.directremail} invalid={emailError} placeholder="Email address" type="email"  onChange={(ev) => handleInputChange(ev, 'directremail')}/>
+              <Button onClick={handleCheckEmail}>Check</Button>
             </div>
 
-            <Input name="" placeholder="Mobile number" type="text" />
+            <Input name="" value={myform.directrmobilenumber} invalid={mobError} placeholder="Mobile number" type="text" onChange={(ev) => handleInputChange(ev, 'directrmobilenumber')}/>
           </FormGroup>
           <FormGroup>
-            <Input name="" placeholder="Mobile number" type="text" />
+            <Input name="" value={myform.directrnationality}  invalid={nationError} placeholder="Nationality" type="text" onChange={(ev) => handleInputChange(ev, 'directrnationality')}/>
             <div className="add-another">
               <Button>Add another</Button>
             </div>
