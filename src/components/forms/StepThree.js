@@ -108,14 +108,13 @@ export default function StepThree({myform, setSteps, setMyForm}) {
             Every business in Singapore needs to appoint a resident director.
           </strong>
           <div>
-            <a
-              href="#"
+            <span
               id="TooltipExample"
               className="form-tooltip"
               onMouseOver={showTooltip}
             >
               !
-            </a>
+            </span>
 
             <Tooltip
               flip
@@ -140,13 +139,13 @@ export default function StepThree({myform, setSteps, setMyForm}) {
       <Row>
         <Col xs="6">
           <Card className="steps-detail-block firstStep active" onClick={(ev) => handleOwnerChange(ev, true, 'permanentResident')}>
-            <img src={icon3} />
+            <img src={icon3} alt=""/>
             <CardText>I am a Singaporean/PR</CardText>
           </Card>
         </Col>
         <Col xs="6">
           <Card className="steps-detail-block firstStep" onClick={(ev) => handleOwnerChange(ev, false, 'permanentResident')}>
-            <img src={icon5} />
+            <img src={icon5} alt=""/>
             <CardText>I am a foreigner</CardText>
           </Card>
         </Col>
@@ -160,14 +159,13 @@ export default function StepThree({myform, setSteps, setMyForm}) {
               as directors?
             </strong>
             <div>
-              <a
-                href="#"
+              <span
                 id="TooltipExample"
                 className="form-tooltip"
                 onMouseOver={showTooltip}
               >
                 !
-              </a>
+              </span>
 
               <Tooltip
                 flip
@@ -189,7 +187,7 @@ export default function StepThree({myform, setSteps, setMyForm}) {
         <Row>
           <Col xs="6">
             <Card className="steps-detail-block secondStep active" onClick={(ev) => handleShareChange(ev, true, 'directors')}>
-              <img src={icon3} />
+              <img src={icon3} alt=""/>
               <CardText>
                 Yes, there are other
                 <br />
@@ -199,7 +197,7 @@ export default function StepThree({myform, setSteps, setMyForm}) {
           </Col>
           <Col xs="6">
             <Card className="steps-detail-block secondStep" onClick={(ev) => handleShareChange(ev, false, 'directors')}>
-              <img src={icon4} />
+              <img src={icon4} alt=""/>
               <CardText>
                 No, I am the only
                 <br />
@@ -217,20 +215,34 @@ export default function StepThree({myform, setSteps, setMyForm}) {
           </CardTitle>
         </Card>
         <Form>
-          <FormGroup>
-            <Input name="" value={myform.directrfirstName} invalid={firstError} onChange={(ev) => handleInputChange(ev, 'directrfirstName')} placeholder="First Name" type="text" />
-            <Input name=""  value={myform.directrlastName} invalid={lastError} onChange={(ev) => handleInputChange(ev, 'directrlastName')} placeholder="Last name" type="text" />
+          <FormGroup className="mob-full">
+            <div className="shareholder-fields">
+              <Input name="" value={myform.directrfirstName} invalid={firstError} onChange={(ev) => handleInputChange(ev, 'directrfirstName')} placeholder="First Name" type="text" />
+              <p className="required-text">First name is required</p>
+            </div>
+            <div className="shareholder-fields">
+              <Input name=""  value={myform.directrlastName} invalid={lastError} onChange={(ev) => handleInputChange(ev, 'directrlastName')} placeholder="Last name" type="text" />
+              <p className="required-text">Last name is required</p>            
+            </div> 
           </FormGroup>
-          <FormGroup>
+          <FormGroup className="mob-full">
             <div className="email-check">
-              <Input name="" value={myform.directremail} invalid={emailError} placeholder="Email address" type="email"  onChange={(ev) => handleInputChange(ev, 'directremail')}/>
+              <div>
+                <Input name="" value={myform.directremail} invalid={emailError} placeholder="Email address" type="email"  onChange={(ev) => handleInputChange(ev, 'directremail')}/>
+                <p className="required-text">Email seems to be valid</p> 
+              </div>
               <Button onClick={handleCheckEmail}>Check</Button>
             </div>
-
-            <Input name="" value={myform.directrmobilenumber} invalid={mobError} placeholder="Mobile number" type="text" onChange={(ev) => handleInputChange(ev, 'directrmobilenumber')}/>
+            <div className="shareholder-fields">
+              <Input name="" value={myform.directrmobilenumber} invalid={mobError} placeholder="Mobile number" type="text" onChange={(ev) => handleInputChange(ev, 'directrmobilenumber')}/>
+              <p className="required-text">Mobile number is required</p>    
+            </div>
           </FormGroup>
-          <FormGroup>
-            <Input name="" value={myform.directrnationality}  invalid={nationError} placeholder="Nationality" type="text" onChange={(ev) => handleInputChange(ev, 'directrnationality')}/>
+          <FormGroup className="mob-full">
+            <div className="shareholder-fields">
+              <Input name="" value={myform.directrnationality}  invalid={nationError} placeholder="Nationality" type="text" onChange={(ev) => handleInputChange(ev, 'directrnationality')}/>
+              <p className="required-text">Nationality is required</p>
+            </div>
             <div className="add-another">
               <Button>Add another</Button>
             </div>

@@ -35,17 +35,15 @@ export default function StepFour({steps, setSteps}) {
           </CardTitle>
           <CardText>You can contact us to change this anytime later</CardText>
         </Card>
-        <Card className="step-address-text">
-          <CardText>
-            151 Chin Swee Road Manhattan House 02-24 Singapore 169876
-          </CardText>
-          <hr />
-          <CardText>
-            Using this Address is mandatory. You can change it later anytime
-          </CardText>
-        </Card>
-
-        <Form>
+        <Form className="four-step-address">
+          
+          <FormGroup>
+            <div className="shareholder-fields" >
+              <Input name="" placeholder="151 Chin Swee Road Manhattan House 02-24 Singapore 169876" type="text" />
+              <p className="required-text">Using this Address is mandatory. You can change it later anytime</p>
+            </div>
+          </FormGroup>
+        
           <FormGroup className="step-from-btn">
             <Button className="step-last-back" onClick={backStep}>Back</Button>
             <Button onClick={saveData}>Save & Next</Button>

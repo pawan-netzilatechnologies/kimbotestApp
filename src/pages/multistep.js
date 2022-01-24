@@ -64,24 +64,24 @@ export default function Multistep() {
         <Card className="steps-bar">
           <List>
             <li className="allSteps active" onClick={(ev) => handleSteps(ev, 1)}>
-              <a href="#">
+              <div>
                 <span>1</span>Business information
-              </a>
+              </div>
             </li>
             <li className="allSteps" onClick={(ev) => handleSteps(ev, 2)}>
-              <a href="#">
+              <div>
                 <span>2</span>Directors
-              </a>
+              </div>
             </li>
             <li className="allSteps" onClick={(ev) => handleSteps(ev, 3)}>
-              <a href="#">
+              <div>
                 <span>3</span>Shareholders
-              </a>
+              </div>
             </li>
             <li className="allSteps" onClick={(ev) => handleSteps(ev, 4)}>
-              <a href="#">
+              <div>
                 <span>4</span>Address
-              </a>
+              </div>
             </li>
           </List>
         </Card>

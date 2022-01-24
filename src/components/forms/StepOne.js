@@ -95,7 +95,7 @@ export default function StepOne({myform, setSteps, setMyForm}) {
       <Row>
         <Col xs="6">
           <Card className="steps-detail-block firstStep" onClick={(ev) => selectValue(ev, "existing")}>
-            <img src={icon1} />
+            <img src={icon1} alt="" />
             <CardText>
               This is an existing <br />
               business already <br />
@@ -105,7 +105,7 @@ export default function StepOne({myform, setSteps, setMyForm}) {
         </Col>
         <Col xs="6">
           <Card className="steps-detail-block firstStep" onClick={(ev) => selectValue(ev, "new")}>
-            <img src={icon2} />
+            <img src={icon2} alt="" />
             <CardText>
               This is a new business <br />
               that is not yet <br />
@@ -123,17 +123,22 @@ export default function StepOne({myform, setSteps, setMyForm}) {
         </Card>
         <Form>
           <FormGroup>
-            <Input
-              name=""
-              placeholder="Company name - first choice"
-              type="text"
-              value={myform.companyName}
-              onChange={(ev) => handleInputChange(ev, 'companyName')}
-              invalid={error}
-            />
+            <div>
+              <Input
+                name=""
+                placeholder="Company name - first choice"
+                type="text"
+                value={myform.companyName}
+                onChange={(ev) => handleInputChange(ev, 'companyName')}
+                invalid={error}
+              />
+              <p className="required-text">"It seems like it is available in Singapore", or "Please enter
+              another name, it seems like it is not available in Singapore"</p>
+            </div>
             <Button onClick={handleCheckName}>Check</Button>
+            
           </FormGroup>
-
+          
           <FormGroup>
             <Input id="exampleSelect" invalid={activityError} name="select" type="select" value={myform.componyActivity}  onChange={(ev) => handleInputChange(ev, 'componyActivity')}>
               <option value="SSIC - Company activity">SSIC - Company activity</option>
@@ -143,14 +148,13 @@ export default function StepOne({myform, setSteps, setMyForm}) {
               <option value="SSIC - Company activity-4">SSIC - Company activity-4</option>
             </Input>
             <div>
-              <a
-                href="#"
+              <span
                 id="TooltipExample"
                 className="form-tooltip"
                 onMouseOver={showTooltip}
               >
                 !
-              </a>
+              </span>
 
               <Tooltip
                 flip
@@ -190,7 +194,7 @@ export default function StepOne({myform, setSteps, setMyForm}) {
         <Row>
           <Col xs="6">
             <Card className="steps-detail-block secondStep" onClick={(ev) => {handleCorporate(ev)}}>
-              <img src={icon3} />
+              <img src={icon3} alt=""/>
               <CardText>
                 Yes, it is incorporated in <br />
                 Singapore
@@ -199,7 +203,7 @@ export default function StepOne({myform, setSteps, setMyForm}) {
           </Col>
           <Col xs="6">
             <Card className="steps-detail-block secondStep" onClick={(ev) => {handleCorporate(ev)}}>
-              <img src={icon4} />
+              <img src={icon4} alt=""/>
               <CardText>
                 No, it is not incorporated <br />
                 in Singapore
@@ -209,17 +213,25 @@ export default function StepOne({myform, setSteps, setMyForm}) {
         </Row>
       </Card>
   
-      <Card className="steps-form">
+      <Card className="steps-form shareholder-form">
         <Card className="section-title">
           <CardTitle tag="h2">
             <strong>Information about your existing Singapore company</strong>
           </CardTitle>
         </Card>
         <Form>
-          <FormGroup>
-            <Input name="" placeholder="UEN" type="text" invalid={uenError} value={myform.uen} onChange={(ev) => handleInputChange(ev, 'uen')}/>
-            <Button onClick={handleCheckName}>Check</Button>
-            <Input name="" placeholder="Company name" invalid={error} type="text" value={myform.companyName} onChange={(ev) => handleInputChange(ev, 'companyName')}/>
+          <FormGroup className="mob-full">  
+              <div className="email-check">
+                <div>
+                  <Input name="" placeholder="UEN" type="text" invalid={uenError} value={myform.uen} onChange={(ev) => handleInputChange(ev, 'uen')}/>
+                  <p className="required-text">UEN is required</p>
+                </div>
+              <Button onClick={handleCheckName}>Check</Button>
+              </div>
+            
+            <div className="shareholder-fields"> 
+              <Input name="" placeholder="Company name" invalid={error} type="text" value={myform.companyName} onChange={(ev) => handleInputChange(ev, 'companyName')}/>
+            </div>
           </FormGroup>
 
           <FormGroup>
@@ -231,14 +243,13 @@ export default function StepOne({myform, setSteps, setMyForm}) {
               <option>SSIC - Company activity-4</option>
             </Input>
             <div>
-              <a
-                href="#"
+              <span
                 id="TooltipExample"
                 className="form-tooltip"
                 onMouseOver={showTooltip}
               >
                 !
-              </a>
+              </span>
 
               <Tooltip
                 flip

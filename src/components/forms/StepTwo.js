@@ -108,14 +108,13 @@ export default function StepTwo({myform, setSteps, setMyForm}) {
             Are you the ultimate beneficial owner of this business?
           </strong>
           <div>
-            <a
-              href="#"
+            <span
               id="TooltipExample"
               className="form-tooltip"
               onMouseOver={showTooltip}
             >
               !
-            </a>
+            </span>
 
             <Tooltip
               flip
@@ -141,7 +140,7 @@ export default function StepTwo({myform, setSteps, setMyForm}) {
       <Row>
         <Col xs="6">
           <Card className="steps-detail-block firstStep active" onClick={(ev) => handleOwnerChange(ev, true, 'beneficialOwner')}>
-            <img src={icon3} />
+            <img src={icon3} alt="" />
             <CardText>
               Yes, I am the ultimate
               <br />
@@ -153,7 +152,7 @@ export default function StepTwo({myform, setSteps, setMyForm}) {
         </Col>
         <Col xs="6">
           <Card className="steps-detail-block firstStep" onClick={(ev) => handleOwnerChange(ev, false, 'beneficialOwner')}>
-            <img src={icon4} />
+            <img src={icon4} alt=""/>
             <CardText>
               No, I am not the
               <br />
@@ -170,14 +169,13 @@ export default function StepTwo({myform, setSteps, setMyForm}) {
           <CardTitle tag="h2" className="title-with-tooltip">
             <strong>Do you have other shareholders in this business?</strong>
             <div>
-              <a
-                href="#"
+              <span
                 id="TooltipExample"
                 className="form-tooltip"
                 onMouseOver={showTooltip}
               >
                 !
-              </a>
+              </span>
 
               <Tooltip
                 flip
@@ -199,7 +197,7 @@ export default function StepTwo({myform, setSteps, setMyForm}) {
         <Row>
           <Col xs="6">
             <Card className="steps-detail-block secondStep active" onClick={(ev) => handleShareChange(ev, true, 'shareholders')}>
-              <img src={icon3} />
+              <img src={icon3} alt="" />
               <CardText>
                 Yes, there are other
                 <br />
@@ -211,7 +209,7 @@ export default function StepTwo({myform, setSteps, setMyForm}) {
           </Col>
           <Col xs="6">
             <Card className="steps-detail-block secondStep" onClick={(ev) => handleShareChange(ev, false, 'shareholders')}>
-              <img src={icon4} />
+              <img src={icon4} alt="" />
               <CardText>
                 No, I am the only
                 <br />
@@ -232,19 +230,33 @@ export default function StepTwo({myform, setSteps, setMyForm}) {
         </Card>
         <Form>
           <FormGroup>
-            <Input name="" value={myform.firstName} invalid={firstError} placeholder="First Name" type="text" onChange={(ev) => handleInputChange(ev, 'firstName')}/>
-            <Input name="" value={myform.lastName}  invalid={lastError} placeholder="Last name" type="text" onChange={(ev) => handleInputChange(ev, 'lastName')} />
+            <div className="shareholder-fields">
+              <Input name="" value={myform.firstName} invalid={firstError} placeholder="First Name" type="text" onChange={(ev) => handleInputChange(ev, 'firstName')}/>
+              <p className="required-text">First name is required</p>
+            </div>
+            <div className="shareholder-fields"> 
+              <Input name="" value={myform.lastName}  invalid={lastError} placeholder="Last name" type="text" onChange={(ev) => handleInputChange(ev, 'lastName')} />
+              <p className="required-text">Last name is required</p>            
+            </div>          
           </FormGroup>
-          <FormGroup>
+          <FormGroup className="mob-full">
             <div className="email-check">
-              <Input name="" value={myform.email} invalid={emailError} placeholder="Email address" type="email" onChange={(ev) => handleInputChange(ev, 'email')}/>
+              <div>
+                <Input name="" value={myform.email} invalid={emailError} placeholder="Email address" type="email" onChange={(ev) => handleInputChange(ev, 'email')}/>
+                <p className="required-text">Email seems to be valid</p> 
+              </div>
               <Button onClick={handleCheckEmail}>Check</Button>
             </div>
-
-            <Input name="" invalid={mobError} value={myform.mobilenumber} placeholder="Mobile number" type="text" onChange={(ev) => handleInputChange(ev, 'mobilenumber')}/>
+            <div className="shareholder-fields">
+              <Input name="" invalid={mobError} value={myform.mobilenumber} placeholder="Mobile number" type="text" onChange={(ev) => handleInputChange(ev, 'mobilenumber')}/>
+              <p className="required-text">Mobile number is required</p>
+            </div>
           </FormGroup>
-          <FormGroup>
-            <Input name="" value={myform.nationality} invalid={nationError} placeholder="Nationality" type="text" onChange={(ev) => handleInputChange(ev, 'nationality')}/>
+          <FormGroup className="mob-full">
+            <div className="shareholder-fields">
+              <Input name="" value={myform.nationality} invalid={nationError} placeholder="Nationality" type="text" onChange={(ev) => handleInputChange(ev, 'nationality')}/>
+              <p className="required-text">Nationality is required</p>
+            </div>
             <div className="add-another">
               <Button>Add another</Button>
             </div>

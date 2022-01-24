@@ -45,34 +45,34 @@ nav.navbar.navbar-expand-md {	background: #00ac8c !important;}
 .section-bottom.card {	text-align: center;	margin-top: 150px;}
 /*MULTISTEPS SECTION CSS */
 .steps-bar ul {	padding: 0;	margin: 0;	display: flex;	justify-content: space-between;	list-style: none; }
-.steps-bar ul li a {	display: flex;	flex-direction: column;	text-align: center;	text-decoration: none;	color: #c8c8c8;}
-.steps-bar ul li a span {	background: #c8c8c8;	width: 45px;	height: 45px;	margin: 0 auto 10px;	display: flex;	align-items: center;	justify-content: center;	border-radius: 100%;	font-size: 22px;	line-height: 24px;	color: #fff;	font-weight: bold;}
+.steps-bar ul li div {	display: flex;	flex-direction: column;	text-align: center;	text-decoration: none;	color: #c8c8c8; cursor: pointer;}
+.steps-bar ul li div span {	background: #c8c8c8;	width: 45px;	height: 45px;	margin: 0 auto 10px;	display: flex;	align-items: center;	justify-content: center;	border-radius: 100%;	font-size: 22px;	line-height: 24px;	color: #fff;	font-weight: bold;}
 .steps-bar ul li {	position: relative;	width: 25%;	max-width: 25%;}
 .steps-bar ul li::before {	content: "";	position: absolute;	width: 80%;	top: 17px;	height: 10px;	background: #c8c8c8;	left: 60%;	border-radius: 10px;}
 .steps-bar ul li:last-child:before {display: none;}
 .multistep-section {	padding: 55px 0;}
-.steps-bar ul li.active a span {	background: #00ac8c;}
-.steps-bar ul li.active a {	color: #00ac8c;}
+.steps-bar ul li.active div span {	background: #00ac8c;}
+.steps-bar ul li.active div {	color: #00ac8c;}
 .steps-bar.card {	margin-bottom: 30px;}
 .steps-block .section-title .card-text {	width: 100%;	display: inline-block;	text-align: center;	margin-top: 30px;	font-size: 30px;	line-height: 32px;	margin-bottom: 15px;}
-.steps-detail-block.card {	background: #fff !important;	padding: 15px;	box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);	margin: 10px 0; text-align: center;}
+.steps-detail-block.card { cursor: pointer;	background: #fff !important;	padding: 15px;	box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);	margin: 10px 0; text-align: center;}
 .steps-detail-block img {	width: 200px;	margin: 0 auto;}
 .steps-detail-block p.card-text {	font-size: 30px;	line-height: 38px;	margin-top: 30px;}
 .steps-form {	padding: 50px 0;}
 .steps-form .section-title {	margin-bottom: 40px;}
-.steps-form form div.mb-3 {	width: 80%;	display: flex;	margin-bottom: 15px !important;	gap: 30px;}
+.steps-form form div.mb-3 {	width: 80%;	display: flex;	margin-bottom: 15px !important;	gap: 30px; align-items: flex-start;}
 .steps-form form input, .steps-form form select {	border: none;	background: transparent;	border-bottom: 4px solid rgba(0, 0, 0, 0.2);	border-radius: 0;	padding: 10px 0;	font-size: 20px;	line-height: 24px;	color: #000;}
 .form-control:focus, .form-select:focus {	background-color: transparent !important;	box-shadow: none !important;	border-color: rgba(0, 0, 0, 0.2) !important;}
 .steps-form form button {	background: #7f0019;	border: none;	font-weight: bold;	padding: 10px 30px;	font-size: 22px;	line-height: 32px;	color: #fff;}
 .steps-form form .step-from-btn.mb-3 {	width: 100%;	justify-content: space-between;}
-.form-tooltip {	width: 30px;	height: 30px;	display: flex;	background: #000;	align-items: center;	justify-content: center;	color: #fff;	text-decoration: none;	font-size: 20px;	line-height: 22px;	font-weight: bold;	border-radius: 100%;}
+.form-tooltip {	width: 30px;	height: 30px;	display: flex;	background: #000;	align-items: center;	justify-content: center;	color: #fff;	text-decoration: none;	font-size: 20px;	line-height: 22px;	font-weight: bold;	border-radius: 100%; cursor: pointer;}
 .form-tooltip:hover, .form-tooltip:focus {color: #fff; opacity: 0.7;}
 .step-business-section .section-title .card-text {	text-align: left;}
 .tooltip-inner {	max-width: 270px !important;	color: #000 !important;	text-align: left !important;	background-color: #cecfd0 !important;	border-radius: 0.25rem !important;	padding: 15px !important;	font-size: 16px !important;	line-height: 24px !important;}
 .bs-tooltip-end .tooltip-arrow::before, .bs-tooltip-auto[data-popper-placement^="right"] .tooltip-arrow::before {	border-right-color: #cecfd0 !important;}
 .steps-form.shareholder-form form div.mb-3 {	width: 100%;}
-.steps-form.shareholder-form.card .form-control {	width: 50%;	max-width: 50%;}
-.steps-form.shareholder-form form div.mb-3 .email-check {	display: flex;	width: 50%;	max-width: 50%;	gap: 15px;}
+.steps-form.shareholder-form.card .shareholder-fields {	width: 50%;	max-width: 50%;}
+.steps-form.shareholder-form form div.mb-3 .email-check {	display: flex;	width: 50%;	max-width: 50%;	gap: 15px; align-items: flex-start;}
 .steps-form.shareholder-form form div.mb-3 .email-check .form-control {	width: 100%;	max-width: 100%;}
 .steps-form.shareholder-form.card .add-another {	width: 50%;	max-width: 50%;}
 .steps-form.shareholder-form.card .add-another button {	color: #00ac8c;	background: none;	border: 2px solid #00ac8c;}
@@ -134,7 +134,7 @@ nav.navbar.navbar-expand-md {	background: #00ac8c !important;}
 .checkout-form form .form-check {	border: 1px solid rgba(0, 0, 0, 0.2);	padding: 10px 10px 10px 40px;	border-radius: 5px;	margin-bottom: 15px;}
 .steps-form .checkout-form form input.form-check-input {	border: 1px solid rgba(0, 0, 0, 0.2);	margin-left: -32px;}
 .detailpage-bar ul {	padding-left: 0;	margin: 0;	list-style: none;}
-.detailpage-bar ul li {	float: left;	margin-right: 110px;}
+.detailpage-bar ul li {	float: left;	margin-right: 85px;}
 .detailpage-bar ul li a {	text-decoration: none;	font-size: 26px;	line-height: 30px;	color: #000;	border-bottom: 4px solid transparent;}
 .section-main {	padding: 55px 0;}
 .detailpage-bar {	margin-bottom: 50px;}
@@ -206,7 +206,7 @@ td {	border: none !important;}
 .profile-image.card::after {	background-image: url(./images/camera.png) !important;	background-color: rgba(0, 0, 0, 0.2) !important;overflow: hidden;border-radius: 100%;background-size: 35px !important;content: "";position: absolute;top: 0;bottom: 0;left: 0;right: 0;background-repeat: no-repeat;background-position: center;}
 .profile-security button {	background: #7f0019;	border: none;	font-weight: bold;	padding: 10px 30px;	font-size: 22px;	line-height: 32px;	color: #fff;	max-width: 266px;width: 100%;}
 .profile-detail select {	background: url(./images/arrow-down.png);    background-size: 15px;	background-repeat: no-repeat;	background-position: center right 10px;	padding-right: 25px !important;}
-.profile-payment  button {	background: #7f0019;	border: none;	font-weight: bold;	padding: 10px 30px;	font-size: 22px;	line-height: 32px;	color: #fff;	width: 100%;}
+.profile-payment button {	background: #7f0019;	border: none;	font-weight: bold;	padding: 10px 30px;	font-size: 18px;	line-height: 26px;	color: #fff;	width: 100%;}
 .authenticated-check .form-check-input:checked[type="checkbox"] {	opacity: 0; z-index: 9;}
 .profile-payment .form-check {	position: relative;	padding-left: 50px;}
 .authenticated-check input {	position: absolute;	left: 25px;	top: -5px;	width: 35px;	height: 35px; border: 1px solid #000;}
@@ -230,6 +230,7 @@ td {	border: none !important;}
 .profile-point-block ul li span.point-linkedin {	background: #0e76a8;	border-color: #0e76a8;	color: #fff;	font-weight: bold;}
 .profile-point-block ul li span.point-authenticate {	background: #b2b4b3;	border-color: #b2b4b3;	color: #fff;	font-weight: bold;}
 .profile-point-block.card {	margin-top: 40px;}
+.toggle-btn.card {	width: 60px;	height: 28px;	background: #00ac8c !important;	border-radius: 35px; max-width: 60px;	min-width: 60px;}
 .profile-detail.profile-score-block.card {	padding: 50px 15px;}
 .toggle-btn.card .form-check-input {	z-index: 9; position: absolute;	left: 0;	right: 0;	margin-left: 0;	width: 100%;	top: 0;	bottom: 0;	height: 100%;	opacity: 0; cursor: pointer;}
 .toggle-btn.card span {	width: 24px;	height: 24px;	background: #fff;	display: inline-block;	transition: 1s;	position: absolute;	left: 2px;	top: 1.8px;	bottom: 0;	border-radius: 100%; transition: 1s;}
@@ -241,7 +242,7 @@ td {	border: none !important;}
 .myprofile-left p.card-text {	margin-bottom: 5px;	font-size: 22px;	line-height: 30px;	color: #000;}
 .myprofile-left.card {	display: inline-block;}
 .myprofile-left a {	display: inline-block;	width: auto;	background: #00ac8c;	padding: 15px 20px;	text-decoration: none;	color: #fff;	font-size: 20px;	line-height: 22px;	border-radius: 5px;	font-weight: 600;	margin: 40px 0;}
-.myprofile-left a:hover, .myprofile-left a:focus {background: #7f0019;}
+.myprofile-left a:hover, .myprofile-left a:focus {background: #7f0019; color: #fff;}
 .profile-image.card {	max-width: 250px;	margin: 0 auto 40px;}
 .myprofile-verifaction .card-title {	margin-bottom: 20px;}
 .myprofile-verifaction ul {	list-style: none;	padding-left: 0;}
@@ -284,6 +285,26 @@ td {	border: none !important;}
 .steps-form form div.mb-3 input[type="file"] {	border-bottom: none;}
 :focus {	box-shadow: none !important;}
 .bs-tooltip-start .tooltip-arrow::before, .bs-tooltip-auto[data-popper-placement^="left"] .tooltip-arrow::before {	border-left-color: #cecfd0;}
+.profile-detail.profile-account .form-label {	margin-bottom: 0;}
+.detailpage-bar ul li {	margin-bottom: 10px;}
+.steps-detail-block.card.active {	border: 1px solid #000 !important;}
+.required-text {	color: #dc3545;	font-size: 18px;	line-height: 24px;	margin-top: 10px; margin-bottom: 0;}
+.steps-form form input::placeholder {	color: #000 !important;}
+.email-check div {	width: 100%;}
+.steps-form .checkout-form form div.mb-3 button {	width: 100%;}
+.four-step-address .shareholder-fields {	width: 100%;}
+.steps-form form.four-step-address div.mb-3 {	width: 100%;}
+
+
+@media screen and (max-width: 1200px) {
+.sidebar-block a {	font-size: 16px;	line-height: 22px;}
+.table-responsive .table {	width: 700px;}
+.detailpage-bar ul li {	float: left;	margin-right: 70px;}
+.profile-security button {	padding: 10px 20px;	font-size: 18px;	line-height: 28px;}
+.profile-payment button {	padding: 10px 20px;	font-size: 16px;	line-height: 22px;}
+.copy-btn a {	padding: 8px 15px;}
+
+}
 @media screen and (max-width: 992px) {
 	.navbar .create-new-business.nav-link {		padding: 10px 15px !important;	}
 	.hedaer-icon a img {		height: 20px;	}
@@ -298,7 +319,24 @@ td {	border: none !important;}
 	.step-address-text p {		font-size: 20px;		line-height: 26px;		}
 	.step-four-bottom .row {		flex-direction: column;	}
 	.step-four-bottom .row .col-4 {		width: 100%;		margin: 10px 0;	}
-
+	.detailpage-bar ul li {		margin-right: 50px;	}
+	.detailpage-bar ul li a {	font-size: 16px;	line-height: 24px;}
+	.sidebar-block ul li {		flex-direction: column;		gap: 10px;	}
+	.sidebar-block h3.card-title {		font-size: 16px;		line-height: 22px;	}
+	.sidebar-block a {		font-size: 12px;		line-height: 16px;	}
+	.sidebar-block p.card-text {		font-size: 12px;		line-height: 18px;	}
+	.detailpage-bar {		margin-bottom: 25px;	}
+	.current-plan-block {		padding: 15px;		}
+	.profile-security button {		padding: 10px 10px;		font-size: 14px;		line-height: 20px;	}
+	.profile-payment button {		padding: 10px 10px;		font-size: 12px;		line-height: 20px;	}
+	.profile-point-block ul li {		display: block;	}
+	.profile-point-block ul li span {		width: 43%;		float: left;		margin-right: 10px;	}
+	.profile-point-block ul li label {		width: 100%;		margin: 10px 0;	}
+	.cnb-top-left.card {		padding-right: 0;	}
+	.cnb-top .col-8 {		width: 100%;		margin-bottom: 20px;	}
+	.cnb-top .col-4 {		width: 100%;	}
+	.cnb-top.card {		padding: 25px;	}
+	.cnb-top-left.card h2.card-title {		font-size: 32px;		line-height: 40px;	}
 }
 @media screen and (max-width: 767px) {
 .header-right .navbar-toggler {	border: none;	padding: 0;}
@@ -315,11 +353,71 @@ td {	border: none !important;}
 .step-business-section.card .section-title.card {	margin-bottom: 20px;}
 .steps-form {	padding: 20px 0;}
 .steps-bar ul li::before {	width: 60%;	left: 70%;}
+.step-business-section.card {	padding: 20px 0;}
+.steps-form form div.mb-3 {	gap: 15px;}
+.section-title h2.card-title br {	display: none;}
+.step-address-text {	margin: 20px 0;}
+.detailpage-main .col-8, .detailpage-main .col-4 {		width: 100%;	}
+.detailpage-bar ul li a {		font-size: 16px;		line-height: 24px;	}
+.detailpage-bar ul li {	margin-right: 40px;}
+.current-plan-section {	padding: 15px;}
+.current-plan-header a {	margin-right: 40px;	font-size: 22px;	line-height: 26px;}
+.current-plan-section .col-6 {	width: 100%;	margin: 10px 0;}
+.payment-monthly-yearly .col-6 {	width: 100%;}
+.current-plan-bottom a {	font-size: 18px;	line-height: 22px;}
+.current-plan-bottom .current-plan-checkout {	padding: 10px 20px;}
+.file-upload-detail.card {	flex-direction: column;	text-align: center;}
+.profile-detail .mb-3 {	display: grid;	grid-template-columns: 1fr 1fr;}
+.profile-image.card {	max-width: 75px;	margin: 0 auto 10px;}
+.profile-detail.profile-payment .mb-3, .profile-detail.profie-financial .mb-3 {	grid-template-columns: 1fr;}
+.profile-detail .mb-3 {	gap: 15px;}
+.profile-payment .form-check {	margin-bottom: 15px;}
+.profile-point-block.card {	margin-top: 15px;}
+.profile-login-device-bottom.card {	margin: 10px 0;	padding-left: 0;}
+.profile-detail.profile-address .col-6 {	width: 100%;}
+.profile-detail.profile-security .col-6 {	width: 100%;}
+.profile-point-block .col-6 {	width: 100%;}
+.profile-point-block ul li span {	width: 45%;}
+.profile-security-btn.card a.get-started-btn {	padding: 12px 15px;	font-size: 16px;	line-height: 22px;}
+.profile-account .btn {	margin-top: 10px;}
+.detailpage-bar ul li {	float: none;	display: inline-block;}
+.detailpage-bar ul {	text-align: center;}
+.myprofile-left .card-title {	margin-bottom: 25px;	font-size: 28px;	line-height: 34px;}
+.myprofile-left p.card-text {	margin-bottom: 5px;	font-size: 16px;	line-height: 24px;	color: #000;}
+.myprofile-left.card {	text-align: center;}
+.myprofile-left.card {	margin-bottom: 10px;}
+.popup-btn.card a {	font-size: 16px;	line-height: 22px;}
+.steps-form.modal-body .col-5, .steps-form.modal-body .col-7 {	width: 100%;}
+.required-text {	font-size: 14px;	line-height: 18px;}
+.steps-form.shareholder-form form div.mb-3 .email-check {	width: 100%;	max-width: 100%;}
+.steps-form.shareholder-form.card .shareholder-fields {	width: 100%;	max-width: 100%;}
+.steps-form.shareholder-form form div.mb-3.mob-full {	flex-direction: column;}
 
 }
 
 @media screen and (max-width: 480px) {
 .steps-bar ul li {	width: 100%;	max-width: 100%;}
-.steps-bar ul li a {	font-size: 10px;}
-
+.steps-bar ul li div {	font-size: 10px;}
+.steps-bar ul li::before {	width: 35%;	left: 83%;}
+.steps-bar ul li div span {	width: 40px;	height: 40px;	}
+.steps-detail-block img {	width: 100px;}
+.col-6 {	width: 100% !important;}
+.steps-form .section-title {	margin-bottom: 20px;}
+.steps-form form input, .steps-form form select {	padding: 10px 0;	font-size: 14px;	line-height: 16px;}
+.steps-form form button {	padding: 8px 15px;	font-size: 16px;	line-height: 24px;}
+.section-title h2.card-title {	font-size: 18px;	line-height: 26px;}
+.steps-block .section-title .card-text {	font-size: 16px;	line-height: 22px;}
+.step-address-text p {	font-size: 16px;	line-height: 22px;}
+.tabs-detail ul {	padding-left: 20px;}
+.detailpage-bar ul li {	margin-right: 15px;}
+.detail-business-header h3 {	font-size: 15px;	line-height: 17px;}
+.detail-business-block ul li h4 {	font-size: 14px;	line-height: 18px;}
+.detail-business-block ul li p {	font-size: 14px;	line-height: 18px;}
+.detail-business-header a {	font-size: 10px;	line-height: 14px;}
+table thead th, table td {	font-size: 12px;	line-height: 16px;}
+.detailpage-bar ul li a {	font-size: 14px;	line-height: 22px;}
+.cnb-top-left.card h2.card-title {	font-size: 22px;	line-height: 28px;}
+.send-btn a {	font-size: 14px;	line-height: 20px;	padding: 8px 10px;}
+.si-import img {	width: 30px;}
+.cnb-top.card {	padding: 15px;}
 }
