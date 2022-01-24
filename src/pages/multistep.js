@@ -26,6 +26,7 @@ export default function Multistep() {
     directremail: '',
     directrmobilenumber: '',
     directrnationality: '',
+    address: ''
   })
  
   const handleSteps = (ev, stp) => {

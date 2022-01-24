@@ -75,7 +75,7 @@ export default function StepOne({myform, setSteps, setMyForm}) {
       setError(true)
     }
   }
-  const handleCorporate = (ev) =>{
+  const handleCorporate = (ev, value, name) =>{
     var dots = document.getElementsByClassName("secondStep");
     for (var n = 0; n < dots.length; ++n) {
       if (dots[n] !== this) {
@@ -83,6 +83,7 @@ export default function StepOne({myform, setSteps, setMyForm}) {
       }
     }
     ev.currentTarget.classList.add("active");
+    setMyForm({...myform , [name]: value})
   }
   return (
     <Card className="steps-block">
@@ -94,7 +95,7 @@ export default function StepOne({myform, setSteps, setMyForm}) {
       </Card>
       <Row>
         <Col xs="6">
-          <Card className="steps-detail-block firstStep" onClick={(ev) => selectValue(ev, "existing")}>
+          <Card className="steps-detail-block firstStep active" onClick={(ev) => selectValue(ev, "existing")}>
             <img src={icon1} alt="" />
             <CardText>
               This is an existing <br />
@@ -132,8 +133,8 @@ export default function StepOne({myform, setSteps, setMyForm}) {
                 onChange={(ev) => handleInputChange(ev, 'companyName')}
                 invalid={error}
               />
-              <p className="required-text">"It seems like it is available in Singapore", or "Please enter
-              another name, it seems like it is not available in Singapore"</p>
+              {error ? <p className="required-text">"It seems like it is available in Singapore", or "Please enter
+              another name, it seems like it is not available in Singapore"</p> : ''}
             </div>
             <Button onClick={handleCheckName}>Check</Button>
             
@@ -193,7 +194,7 @@ export default function StepOne({myform, setSteps, setMyForm}) {
         </Card>
         <Row>
           <Col xs="6">
-            <Card className="steps-detail-block secondStep" onClick={(ev) => {handleCorporate(ev)}}>
+            <Card className="steps-detail-block secondStep active" onClick={(ev) => {handleCorporate(ev, true, 'incorporated')}}>
               <img src={icon3} alt=""/>
               <CardText>
                 Yes, it is incorporated in <br />
@@ -202,7 +203,7 @@ export default function StepOne({myform, setSteps, setMyForm}) {
             </Card>
           </Col>
           <Col xs="6">
-            <Card className="steps-detail-block secondStep" onClick={(ev) => {handleCorporate(ev)}}>
+            <Card className="steps-detail-block secondStep" onClick={(ev) => {handleCorporate(ev, false, 'incorporated')}}>
               <img src={icon4} alt=""/>
               <CardText>
                 No, it is not incorporated <br />
@@ -224,13 +225,15 @@ export default function StepOne({myform, setSteps, setMyForm}) {
               <div className="email-check">
                 <div>
                   <Input name="" placeholder="UEN" type="text" invalid={uenError} value={myform.uen} onChange={(ev) => handleInputChange(ev, 'uen')}/>
-                  <p className="required-text">UEN is required</p>
+                  {uenError ? <p className="required-text">UEN is required</p> : ''}
                 </div>
               <Button onClick={handleCheckName}>Check</Button>
               </div>
             
             <div className="shareholder-fields"> 
               <Input name="" placeholder="Company name" invalid={error} type="text" value={myform.companyName} onChange={(ev) => handleInputChange(ev, 'companyName')}/>
+              {error ? <p className="required-text">"It seems like it is available in Singapore", or "Please enter
+              another name, it seems like it is not available in Singapore"</p> :''}
             </div>
           </FormGroup>
 

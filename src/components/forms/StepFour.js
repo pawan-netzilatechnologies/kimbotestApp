@@ -1,4 +1,5 @@
 import react from "react";
+import { useState } from "react/cjs/react.development";
 import {
   Card,
   CardTitle,
@@ -13,15 +14,42 @@ import {
   Input,
 } from "reactstrap";
 
-export default function StepFour({steps, setSteps}) {
+export default function StepFour({myform, setSteps, setMyForm}) {
+  const [addressError, setAddressError] = useState(false);
+  const [shopPayment, setShowPayment] = useState(false);
+  const [monthly, setMonthly] = useState(true)
   const saveData = () => {
-    setSteps(4)  
+    if(myform.address == ""){
+      setAddressError(true)
+    }else{
+      setShowPayment(true);
+      setSteps(4)  
+    }
   }
   const backStep = () =>{
     setSteps(3)  
   }
+  const handleInputChange = (ev, name) => {
+    setMyForm({...myform , [name]: ev.target.value})
+  }
+  const changeYear = (ev, value) => {
+    
+    if(value == 'month'){
+      setMonthly(true);
+    }else{
+      setMonthly(false);
+    }
+    var dots = document.getElementsByClassName("yeartab");
+    for (var n = 0; n < dots.length; ++n) {
+      if (dots[n] !== this) {
+        dots[n].classList.remove("tab-active")
+      }
+    }
+    ev.currentTarget.classList.add("tab-active");
+  }
   return (
     <Card className="steps-block">
+      {shopPayment == false ?
       <Card className="steps-form">
         <Card className="section-title">
           <CardTitle tag="h2" className="text-center title-with-tooltip">
@@ -39,8 +67,8 @@ export default function StepFour({steps, setSteps}) {
           
           <FormGroup>
             <div className="shareholder-fields" >
-              <Input name="" placeholder="151 Chin Swee Road Manhattan House 02-24 Singapore 169876" type="text" />
-              <p className="required-text">Using this Address is mandatory. You can change it later anytime</p>
+              <Input name="" invalid={addressError} placeholder="151 Chin Swee Road Manhattan House 02-24 Singapore 169876" type="text" onChange={(ev) => handleInputChange(ev, 'address')} />
+              {addressError ? <p className="required-text">Using this Address is mandatory. You can change it later anytime</p> : ''}
             </div>
           </FormGroup>
         
@@ -50,7 +78,7 @@ export default function StepFour({steps, setSteps}) {
           </FormGroup>
         </Form>
       </Card>
-
+  :
       <Card className="steps-form step-four-bottom">
         <Card className="section-title">
           <CardTitle tag="h2" className="text-center">
@@ -105,10 +133,10 @@ export default function StepFour({steps, setSteps}) {
           <Col xs="4">
             <Card className="monthly-yearly-tabs bi-block">
               <Card className="tabs-links">
-                <a href="#" className="tab-active">
+                <a href="#" className="yeartab tab-active" onClick={(ev) => changeYear(ev, 'month')}>
                   Monthly
                 </a>
-                <a href="#">Yearly</a>
+                <a href="#" className="yeartab" onClick={(ev) => changeYear(ev, 'year')}>Yearly</a>
               </Card>
               <Card className="tabs-detail">
                 <CardTitle tag="h4" className="text-center">
@@ -118,10 +146,22 @@ export default function StepFour({steps, setSteps}) {
                   Execute your business plan and receive revenues into adigital
                   bank account.
                 </CardText>
+                {monthly ?
+                <>
                 <CardTitle tag="h4" className="text-center">
                   USD 329
                 </CardTitle>
                 <CardText className="text-center">per month</CardText>
+                </> 
+                :
+                <>
+                <CardTitle tag="h4" className="text-center">
+                USD 1329
+                </CardTitle>
+                <CardText className="text-center">per year</CardText>
+                </>
+                }
+                
                 <List>
                   <li>
                     Mandatory corporate secretary and nominee director
@@ -234,6 +274,7 @@ export default function StepFour({steps, setSteps}) {
           </Col>
         </Row>
       </Card>
+    }
     </Card>
   );
 }

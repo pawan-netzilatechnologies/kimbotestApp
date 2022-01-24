@@ -232,30 +232,30 @@ export default function StepTwo({myform, setSteps, setMyForm}) {
           <FormGroup>
             <div className="shareholder-fields">
               <Input name="" value={myform.firstName} invalid={firstError} placeholder="First Name" type="text" onChange={(ev) => handleInputChange(ev, 'firstName')}/>
-              <p className="required-text">First name is required</p>
+              {firstError ? <p className="required-text">First name is required</p> : ''}
             </div>
             <div className="shareholder-fields"> 
               <Input name="" value={myform.lastName}  invalid={lastError} placeholder="Last name" type="text" onChange={(ev) => handleInputChange(ev, 'lastName')} />
-              <p className="required-text">Last name is required</p>            
+              {lastError ? <p className="required-text">Last name is required</p>  : ''}           
             </div>          
           </FormGroup>
           <FormGroup className="mob-full">
             <div className="email-check">
               <div>
                 <Input name="" value={myform.email} invalid={emailError} placeholder="Email address" type="email" onChange={(ev) => handleInputChange(ev, 'email')}/>
-                <p className="required-text">Email seems to be valid</p> 
+                {emailError ? <p className="required-text">Email seems to be valid</p>  : ''}     
               </div>
               <Button onClick={handleCheckEmail}>Check</Button>
             </div>
             <div className="shareholder-fields">
               <Input name="" invalid={mobError} value={myform.mobilenumber} placeholder="Mobile number" type="text" onChange={(ev) => handleInputChange(ev, 'mobilenumber')}/>
-              <p className="required-text">Mobile number is required</p>
+              {mobError ? <p className="required-text">Mobile number is required</p>  : ''}    
             </div>
           </FormGroup>
           <FormGroup className="mob-full">
             <div className="shareholder-fields">
               <Input name="" value={myform.nationality} invalid={nationError} placeholder="Nationality" type="text" onChange={(ev) => handleInputChange(ev, 'nationality')}/>
-              <p className="required-text">Nationality is required</p>
+              {nationError ? <p className="required-text">Nationality is required</p>  : ''}   
             </div>
             <div className="add-another">
               <Button>Add another</Button>

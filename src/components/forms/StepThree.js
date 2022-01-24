@@ -218,30 +218,30 @@ export default function StepThree({myform, setSteps, setMyForm}) {
           <FormGroup className="mob-full">
             <div className="shareholder-fields">
               <Input name="" value={myform.directrfirstName} invalid={firstError} onChange={(ev) => handleInputChange(ev, 'directrfirstName')} placeholder="First Name" type="text" />
-              <p className="required-text">First name is required</p>
+              {firstError ? <p className="required-text">First name is required</p> : ''}
             </div>
             <div className="shareholder-fields">
               <Input name=""  value={myform.directrlastName} invalid={lastError} onChange={(ev) => handleInputChange(ev, 'directrlastName')} placeholder="Last name" type="text" />
-              <p className="required-text">Last name is required</p>            
+              {lastError ? <p className="required-text">Last name is required</p> : ''}            
             </div> 
           </FormGroup>
           <FormGroup className="mob-full">
             <div className="email-check">
               <div>
                 <Input name="" value={myform.directremail} invalid={emailError} placeholder="Email address" type="email"  onChange={(ev) => handleInputChange(ev, 'directremail')}/>
-                <p className="required-text">Email seems to be valid</p> 
+                {emailError ? <p className="required-text">Email seems to be valid</p> : ''} 
               </div>
               <Button onClick={handleCheckEmail}>Check</Button>
             </div>
             <div className="shareholder-fields">
               <Input name="" value={myform.directrmobilenumber} invalid={mobError} placeholder="Mobile number" type="text" onChange={(ev) => handleInputChange(ev, 'directrmobilenumber')}/>
-              <p className="required-text">Mobile number is required</p>    
+              {mobError ? <p className="required-text">Mobile number is required</p> : ''}    
             </div>
           </FormGroup>
           <FormGroup className="mob-full">
             <div className="shareholder-fields">
               <Input name="" value={myform.directrnationality}  invalid={nationError} placeholder="Nationality" type="text" onChange={(ev) => handleInputChange(ev, 'directrnationality')}/>
-              <p className="required-text">Nationality is required</p>
+              {nationError ? <p className="required-text">Nationality is required</p> : ''}
             </div>
             <div className="add-another">
               <Button>Add another</Button>
