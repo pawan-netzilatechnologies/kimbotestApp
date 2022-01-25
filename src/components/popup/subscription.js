@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import {
   Button,
   Card,
@@ -14,10 +14,16 @@ import {
 } from "reactstrap";
 
 export default function Subscription({ show9, setShow9 }) {
+  const [business, setBusiness] = useState("");
+  const [error, setError] = useState(false);
   const closeHandle = () => {
     setShow9(false);
   };
-
+  const saveData = () => {
+    if(business === ""){
+      setError(true);
+    }
+  }
   return (
     <Modal isOpen={show9}>
       <ModalHeader charCode="Y" toggle={closeHandle}>
@@ -32,7 +38,7 @@ export default function Subscription({ show9, setShow9 }) {
 
           <Label>New plan</Label>
           <FormGroup>
-            <Input id="exampleSelect" name="select" type="select">
+            <Input id="exampleSelect" name="select" type="select" invalid={error} onChange={(ev) => setBusiness(ev.target.value)}>
               <option>Close business</option>
               <option>Business 2</option>
               <option>Business 3</option>
@@ -52,7 +58,7 @@ export default function Subscription({ show9, setShow9 }) {
           </Card>
           <Card className="popup-btn">
             <a href="#">Contact us</a>
-            <Button>Agree and submit</Button>
+            <Button onClick={saveData}>Agree and submit</Button>
           </Card>
         </Form>
       </ModalBody>

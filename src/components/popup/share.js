@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import { useState } from "react";
 import {
   Button,
   Card,
@@ -15,6 +15,10 @@ import {
 } from "reactstrap";
 
 export default function Share({ show7, setShow7 }) {
+  const [usd, setUsd] = useState("");
+  const [numberShare, setNumberShare] = useState("");
+  const [usdError, setUsdError] = useState(false);
+  const [numbrError, setNumbrError] = useState(false);
   const closeHandle = () => {
     setShow7(false);
   };
@@ -22,6 +26,22 @@ export default function Share({ show7, setShow7 }) {
   const showTooltip = () => {
     setOpen(!open);
   };
+  const savedata = () =>{
+    setUsdError(false);
+    setNumbrError(false)
+    var error = false;
+    if(usd === ''){
+      error = true;
+      setUsdError(true);
+    }
+    if(numberShare === ''){
+      error = true;
+      setNumbrError(true)
+    }
+    if(error === false){
+      setShow7(false);
+    }
+  }
   return (
     <Modal isOpen={show7}>
       <ModalHeader charCode="Y" toggle={closeHandle}>
@@ -70,21 +90,37 @@ export default function Share({ show7, setShow7 }) {
         <Form>
           <Label>Current share capital (ordinary)</Label>
           <FormGroup>
-            <Input name="USD" placeholder="USD" type="text" />
+            <Input
+              name="USD" 
+              placeholder="USD" 
+              type="text"
+              value="100,00"
+            />
             <Input
               name="Number of shares"
               placeholder="Number of shares"
               type="text"
+              value="100,000"
             />
           </FormGroup>
 
           <Label>New share capital (ordinary)</Label>
           <FormGroup>
-            <Input name="USD" placeholder="USD" type="text" />
+            <Input 
+              name="USD" 
+              placeholder="USD" 
+              type="text" 
+              onChange={(ev) => setUsd(ev.target.value)}
+              value={usd}
+              invalid={usdError}
+            />
             <Input
               name="Number of shares"
               placeholder="Number of shares"
               type="text"
+              onChange={(ev) => setNumberShare(ev.target.value)}
+              value={numberShare}
+              invalid={numbrError}
             />
           </FormGroup>
 
@@ -98,7 +134,7 @@ export default function Share({ show7, setShow7 }) {
           </Card>
           <Card className="popup-btn">
             <a href="#">Contact us</a>
-            <Button>Agree and submit</Button>
+            <Button onClick={savedata}>Agree and submit</Button>
           </Card>
         </Form>
       </ModalBody>

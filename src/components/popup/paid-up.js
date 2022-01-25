@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import { useState } from "react";
 import {
   Button,
   Card,
@@ -15,6 +15,8 @@ import {
 } from "reactstrap";
 
 export default function PaidUp({ show6, setShow6 }) {
+  const [usd, setUsd] = useState('')
+  const [usdError, setUsdError] = useState('')
   const closeHandle = () => {
     setShow6(false);
   };
@@ -22,6 +24,14 @@ export default function PaidUp({ show6, setShow6 }) {
   const showTooltip = () => {
     setOpen(!open);
   };
+  const savedata = () => {
+    setUsdError(false);
+    if(usd === ""){
+      setUsdError(true);
+    }else{
+      setShow6(false);
+    }
+  }
   return (
     <Modal isOpen={show6}>
       <ModalHeader charCode="Y" toggle={closeHandle}>
@@ -64,7 +74,13 @@ export default function PaidUp({ show6, setShow6 }) {
 
           <Label>New paid-up capital</Label>
           <FormGroup>
-            <Input name="USD" placeholder="USD" type="text" />
+            <Input name="USD"
+              placeholder="USD"
+              type="text" 
+              onChange={(ev) => setUsd(ev.target.value)}
+              value={usd}
+              invalid={usdError}
+            />
           </FormGroup>
 
           <Card className="popup-detail">
@@ -77,7 +93,7 @@ export default function PaidUp({ show6, setShow6 }) {
           </Card>
           <Card className="popup-btn">
             <a href="#">Contact us</a>
-            <Button>Agree and submit</Button>
+            <Button onClick={savedata}>Agree and submit</Button>
           </Card>
         </Form>
       </ModalBody>
