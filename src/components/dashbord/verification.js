@@ -27,24 +27,24 @@ export default function Verification() {
         <Card className="steps-bar">
           <List>
             <li className="active">
-              <a href="#">
+              <div>
                 <span></span>
-              </a>
+              </div>
             </li>
             <li>
-              <a href="#">
+              <div>
                 <span></span>Low
-              </a>
+              </div>
             </li>
             <li>
-              <a href="#">
+              <div>
                 <span></span>Good
-              </a>
+              </div>
             </li>
             <li>
-              <a href="#">
+              <div>
                 <span></span>Excellent
-              </a>
+              </div>
             </li>
           </List>
         </Card>

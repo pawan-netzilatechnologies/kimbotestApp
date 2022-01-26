@@ -34,7 +34,7 @@ function Header() {
 
             <Form className="header-search-form not-show">
               <Button>
-                <img src={searchicon} />
+                <img src={searchicon} alt=""/>
               </Button>
 
               <FormGroup>
@@ -63,14 +63,14 @@ function Header() {
                 </Nav>
               </Collapse>
               <Card className="hedaer-icon">
-                <a href="#">
-                  <img src={chaticon} />
+                <a href="/">
+                  <img src={chaticon} alt=""/>
                 </a>
-                <a href="#">
-                  <img src={bellicon} />
+                <a href="/">
+                  <img src={bellicon} alt=""/>
                 </a>
                 <Card className="account-dropdown-main">
-                  <a href="#" className="header-circle-btn"></a>
+                  <a href="/" className="header-circle-btn"></a>
                   <Card className="account-dropdown">
                     <Card className="account-dropdown-inner">
                       <List>
@@ -78,10 +78,10 @@ function Header() {
                           <strong>Account</strong>
                         </li>
                         <li>
-                          <a href="#">View profile</a>
+                          <a href="/">View profile</a>
                         </li>
                         <li>
-                          <a href="#">Settings</a>
+                          <a href="/">Settings</a>
                         </li>
                       </List>
                       <List>
@@ -89,18 +89,18 @@ function Header() {
                           <strong>Finances</strong>
                         </li>
                         <li>
-                          <a href="#">Transaction history</a>
+                          <a href="/">Transaction history</a>
                         </li>
                       </List>
                       <List>
                         <li>
-                          <a href="#">Support</a>
+                          <a href="/">Support</a>
                         </li>
                         <li>
-                          <a href="#">Invite friends</a>
+                          <a href="/">Invite friends</a>
                         </li>
                         <li>
-                          <a href="#">Logout</a>
+                          <a href="/">Logout</a>
                         </li>
                       </List>
                     </Card>

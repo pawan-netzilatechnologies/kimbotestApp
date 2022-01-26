@@ -8,7 +8,6 @@ import Dashbord from "./pages/dashbord";
 import Profile from "./pages/profile";
 import Transactions from "./pages/transactions";
 import CreateNewBusiness from "./pages/create-new-businesses";
-import EditBusinessName from "./components/popup/edit-business-name";
 
 import "./App.css";
 function App() {
@@ -28,7 +27,6 @@ function App() {
               path="/create-new-businesses"
               element={<CreateNewBusiness />}
             />
-            <Route path="/edit-business-name" element={<EditBusinessName />} />
           </Routes>
         </Router>
       </React.StrictMode>

@@ -1,5 +1,5 @@
 import react, { useState } from "react";
-import { Card, CardTitle, Col, Row, Table, CardText } from "reactstrap";
+import { Card, CardTitle, Col, Row, Table, CardText, Button } from "reactstrap";
 import NewDirector from "../popup/new-director";
 
 export default function Invite() {
@@ -15,7 +15,7 @@ export default function Invite() {
           <Card className="detail-business-block shareholders-block">
             <Card className="detail-business-header">
               <CardTitle tag="h3">Promoter</CardTitle>
-              <a href="#">Add Collaborator</a>
+              <Button>Add Collaborator</Button>
             </Card>
 
             <Table responsive>
@@ -31,8 +31,8 @@ export default function Invite() {
                   <td>First Name Last Name</td>
 
                   <td className="text-right">
-                    <a href="#">Edit</a>
-                    <a href="#">Resign</a>
+                    <Button>Edit</Button>
+                    <Button>Resign</Button>
                   </td>
                 </tr>
               </tbody>
@@ -49,9 +49,9 @@ export default function Invite() {
               Every business registered in Singapore must have at least one
               director who is a Singaporean or Singaporean Permanent Resident.
             </CardText>
-            <a href="#" onClick={showPopup8}>
+            <Button onClick={showPopup8}>
               Add a director
-            </a>
+            </Button>
           </Card>
         </Col>
       </Row>

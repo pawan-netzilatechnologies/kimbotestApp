@@ -9,19 +9,19 @@ export default function Profile() {
         <Card className="detailpage-bar">
           <List>
             <li className="active">
-              <a href="#">My profile</a>
+              <span>My profile</span>
             </li>
             <li>
-              <a href="#">About</a>
+              <span>About</span>
             </li>
             <li>
-              <a href="#">My portfolio</a>
+              <span>My portfolio</span>
             </li>
             <li>
-              <a href="#">My experience</a>
+              <span>My experience</span>
             </li>
             <li>
-              <a href="#">My education</a>
+              <span>My education</span>
             </li>
           </List>
         </Card>

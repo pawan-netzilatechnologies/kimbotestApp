@@ -36,7 +36,7 @@ export default function Payments() {
             <FormGroup check>
               <span className="authenticated-check">
                 <Input id="exampleCheck" name="check" type="checkbox" />
-                <img src={checkicon} />
+                <img src={checkicon} alt="" />
               </span>
               <Label check for="exampleCheck">
                 authenticated X

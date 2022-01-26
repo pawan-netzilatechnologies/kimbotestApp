@@ -43,9 +43,9 @@ export default function Memberspage() {
             <Col xs="3">
               <Card>
                 <Card className="members-thumbnail">
-                  <img src={member1} />
-                  <img src={member2} />
-                  <img src={member3} />
+                  <img src={member1} alt=""/>
+                  <img src={member2} alt=""/>
+                  <img src={member3} alt=""/>
                 </Card>
                 <CardText>Three members</CardText>
               </Card>
@@ -77,8 +77,8 @@ export default function Memberspage() {
             <Col xs="3">
               <Card>
                 <Card className="members-thumbnail">
-                  <img src={member1} />
-                  <img src={member2} />
+                  <img src={member1} alt=""/>
+                  <img src={member2} alt=""/>
                 </Card>
                 <CardText>Two members</CardText>
               </Card>
@@ -110,7 +110,7 @@ export default function Memberspage() {
             <Col xs="3">
               <Card>
                 <Card className="members-thumbnail">
-                  <img src={member1} />
+                  <img src={member1} alt=""/>
                 </Card>
                 <CardText>One members</CardText>
               </Card>
@@ -125,7 +125,7 @@ export default function Memberspage() {
         </Card>
         <Card className="section-bottom">
           <CardText>
-            Want to create a new company account? <a href="#">Start here</a>
+            Want to create a new company account? <Button>Start here</Button>
           </CardText>
         </Card>
       </Container>

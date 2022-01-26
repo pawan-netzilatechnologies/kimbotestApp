@@ -9,6 +9,7 @@ import {
   List,
   Row,
   Input,
+  Button,
 } from "reactstrap";
 import facebook from "../images/share-facebook.png";
 import linkedin from "../images/share-linkedin.png";
@@ -23,7 +24,7 @@ export default function CreateNewBusiness() {
         <Card className="detailpage-bar">
           <List>
             <li className="active">
-              <a href="#">Invite to create new businesses</a>
+              <span>Invite to create new businesses</span>
             </li>
           </List>
         </Card>
@@ -59,18 +60,18 @@ export default function CreateNewBusiness() {
                   </CardText>
                   <Card className="copy-share">
                     <Card className="copy-btn">
-                      <a href="#">Copy</a>
+                      <Button>Copy</Button>
                     </Card>
                     <Card className="cs-share">
                       <Label>Share via</Label>
-                      <a href="#">
-                        <img src={facebook} />
+                      <a href="https://www.facebook.com/"  target="_blank"  rel="noreferrer">
+                        <img src={facebook} alt=""/>
                       </a>
-                      <a href="#">
-                        <img src={linkedin} />
+                      <a href="https://linkedin.com/"  target="_blank"  rel="noreferrer">
+                        <img src={linkedin} alt=""/>
                       </a>
-                      <a href="#">
-                        <img src={whatsapp} />
+                      <a href="https://web.whatsapp.com/"  target="_blank"  rel="noreferrer">
+                        <img src={whatsapp} alt=""/>
                       </a>
                     </Card>
                   </Card>
@@ -94,16 +95,16 @@ export default function CreateNewBusiness() {
             <CardText>X months free in potential subscription credits</CardText>
             <Card className="send-import">
               <Card className="send-btn">
-                <a href="#">Send Invite</a>
+                <Button>Send Invite</Button>
               </Card>
               <Card className="si-import">
                 <Label>or import</Label>
-                <a href="#">
-                  <img src={xls} />
-                </a>
-                <a href="#">
-                  <img src={email} />
-                </a>
+                <span>
+                  <img src={xls} alt=""/>
+                </span>
+                <span>
+                  <img src={email} alt=""/>
+                </span>
               </Card>
             </Card>
           </Card>

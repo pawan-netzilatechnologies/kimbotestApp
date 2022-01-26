@@ -8,6 +8,7 @@ import {
   List,
   Row,
   Input,
+  Button,
 } from "reactstrap";
 import user from "../../images/member2.png";
 import verifycheck from "../../images/verify-check.png";
@@ -29,7 +30,7 @@ export default function MyProfile() {
             <CardText>
               First Name is available for new engagements Engage First Name
             </CardText>
-            <a href="#">Engage First name</a>
+            <Button>Engage First name</Button>
             <CardTitle tag="h2">
               <strong>About</strong>
             </CardTitle>
@@ -59,19 +60,19 @@ export default function MyProfile() {
                 <li>
                   <Label>Email Verified</Label>
                   <span className="verify-check">
-                    <img src={verifycheck} />
+                    <img src={verifycheck} alt=""/>
                   </span>
                 </li>
                 <li>
                   <Label>Phone Verified</Label>
                   <span className="verify-check">
-                    <img src={verifycheck} />
+                    <img src={verifycheck} alt=""/>
                   </span>
                 </li>
                 <li>
                   <Label>Linkedin Verified</Label>
                   <span className="verify-check">
-                    <img src={verifycheck} />
+                    <img src={verifycheck} alt=""/>
                   </span>
                 </li>
                 <li>

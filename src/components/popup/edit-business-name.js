@@ -73,7 +73,7 @@ export default function EditBusinessName({ show, setShow }) {
             </CardText>
           </Card>
           <Card className="popup-btn">
-            <a href="#">Contact us</a>
+            <Button className="contact-link">Contact us</Button>
             <Button onClick={saveData}>Agree and submit</Button>
           </Card>
         </Form>

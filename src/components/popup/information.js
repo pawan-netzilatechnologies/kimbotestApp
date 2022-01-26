@@ -162,7 +162,7 @@ export default function Information({ show10, setShow10 }) {
             </Col>
           </Row>
           <Card className="popup-btn">
-            <a href="#">Contact us</a>
+            <Button className="contact-link">Contact us</Button>
             <Button onClick={saveData}>Agree and submit</Button>
           </Card>
         </Form>

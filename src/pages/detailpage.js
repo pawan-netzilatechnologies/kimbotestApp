@@ -40,19 +40,19 @@ export default function DetailPage() {
         <Card className="detailpage-bar">
           <List>
             <li className="active" onClick={(ev) => handleSteps(ev, 1)}>
-              <a href="#">Details</a>
+              <span>Details</span>
             </li>
             <li onClick={(ev) => handleSteps(ev, 2)}>
-              <a href="#">Payments</a>
+              <span>Payments</span>
             </li>
             <li onClick={(ev) => handleSteps(ev, 3)}>
-              <a href="#">Files</a>
+              <span>Files</span>
             </li>
             <li onClick={(ev) => handleSteps(ev, 4)}>
-              <a href="#">Tasks</a>
+              <span>Tasks</span>
             </li>
             <li onClick={(ev) => handleSteps(ev, 5)}>
-              <a href="#">Invite</a>
+              <span>Invite</span>
             </li>
           </List>
         </Card>

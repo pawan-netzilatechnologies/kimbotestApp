@@ -10,6 +10,7 @@ import {
   Row,
   Input,
   Table,
+  Button,
 } from "reactstrap";
 import member1 from "../../images/member1.png";
 import member2 from "../../images/member2.png";
@@ -74,9 +75,9 @@ export default function Detail() {
         <Card className="detail-business-block">
           <Card className="detail-business-header">
             <CardTitle tag="h3">Business Name</CardTitle>
-            <a href="#" onClick={showPopup}>
+            <Button onClick={showPopup}>
               Edit
-            </a>
+            </Button>
           </Card>
 
           <List>
@@ -90,9 +91,9 @@ export default function Detail() {
         <Card className="detail-business-block detail-business-acitivity">
           <Card className="detail-business-header">
             <CardTitle tag="h3">Business Activity</CardTitle>
-            <a href="#" onClick={showPopup10}>
+            <Button onClick={showPopup10}>
               Edit
-            </a>
+            </Button>
           </Card>
 
           <Form>
@@ -118,9 +119,9 @@ export default function Detail() {
         <Card className="detail-business-block shareholders-block">
           <Card className="detail-business-header">
             <CardTitle tag="h3">Shareholders Name</CardTitle>
-            <a href="#" onClick={showPopup3}>
+            <Button onClick={showPopup3}>
               Add
-            </a>
+            </Button>
           </Card>
 
           <Table responsive>
@@ -138,10 +139,10 @@ export default function Detail() {
                 <td className="text-center">100 / USD</td>
                 <td className="text-center">2021-04-15</td>
                 <td>
-                  <a href="#" onClick={showPopup2}>
+                  <Button onClick={showPopup2}>
                     Edit
-                  </a>
-                  <a href="#">Resign</a>
+                  </Button>
+                  <Button >Resign</Button>
                 </td>
               </tr>
             </tbody>
@@ -153,9 +154,9 @@ export default function Detail() {
             <CardTitle tag="h3">
               Officers / Authorised Representatives
             </CardTitle>
-            <a href="#" onClick={showPopup4}>
+            <Button onClick={showPopup4}>
               Add
-            </a>
+            </Button>
           </Card>
 
           <Table responsive>
@@ -173,8 +174,8 @@ export default function Detail() {
                 <td className="text-center">Singapore / Director</td>
                 <td className="text-center">2021-12-01</td>
                 <td>
-                  <a href="#">Edit</a>
-                  <a href="#">Resign</a>
+                  <Button>Edit</Button>
+                  <Button>Resign</Button>
                 </td>
               </tr>
             </tbody>
@@ -184,9 +185,9 @@ export default function Detail() {
         <Card className="detail-business-block shareholders-block share-capital-block">
           <Card className="detail-business-header">
             <CardTitle tag="h3">Share capital</CardTitle>
-            <a href="#" onClick={showPopup7}>
+            <Button onClick={showPopup7}>
               Amendment in progress
-            </a>
+            </Button>
           </Card>
 
           <Table responsive>
@@ -201,7 +202,7 @@ export default function Detail() {
             <tbody>
               <tr>
                 <td className="text-center">
-                  200,000 <img src={shareedit} />
+                  200,000 <img src={shareedit} alt=""/>
                 </td>
                 <td className="text-center">200,000</td>
                 <td className="text-center">USD</td>
@@ -217,9 +218,9 @@ export default function Detail() {
         <Card className="detail-business-block shareholders-block share-capital-block">
           <Card className="detail-business-header">
             <CardTitle tag="h3">Paid-up capital</CardTitle>
-            <a href="#" onClick={showPopup6}>
+            <Button onClick={showPopup6}>
               Amendment in progress
-            </a>
+            </Button>
           </Card>
 
           <Table responsive>
@@ -234,7 +235,7 @@ export default function Detail() {
             <tbody>
               <tr>
                 <td>
-                  200,000 <img src={shareedit} />
+                  200,000 <img src={shareedit} alt=""/>
                 </td>
 
                 <td>USD</td>
@@ -247,9 +248,9 @@ export default function Detail() {
         <Card className="detail-business-block shareholders-block share-capital-block">
           <Card className="detail-business-header">
             <CardTitle tag="h3">Registered address</CardTitle>
-            <a href="#" onClick={showPopup5}>
+            <Button onClick={showPopup5}>
               Amendment in progress
-            </a>
+            </Button>
           </Card>
 
           <CardText className="registered-address-text">
@@ -263,15 +264,15 @@ export default function Detail() {
             <li>
               <h4>Ultimate beneficial owner</h4>
               <span>
-                <img src={member1} />
+                <img src={member1} alt=""/>
               </span>
             </li>
             <li>
               <h4>Ultimate beneficial owner</h4>
               <span>
-                <img src={member1} />
-                <img src={member2} />
-                <img src={member3} />
+                <img src={member1} alt=""/>
+                <img src={member2} alt=""/>
+                <img src={member3} alt=""/>
               </span>
             </li>
           </List>
@@ -279,26 +280,26 @@ export default function Detail() {
 
         <Card className="sidebar-block text-center">
           <CardTitle tag="h3">Increase share capital</CardTitle>
-          <img src={shareicon} />
+          <img src={shareicon} alt=""/>
           <CardText>
             Share capital consists of all funds raised by a company in exchange
             for common or preferred shares of stock. A company that wishes to
             raise more equity can issue and sell additional shares, thereby
             increasing its share capital.
           </CardText>
-          <a href="#">Increase share capital</a>
+          <Button>Increase share capital</Button>
         </Card>
 
         <Card className="sidebar-block text-center">
           <CardTitle tag="h3">Change registered address</CardTitle>
-          <img src={locationicon} />
+          <img src={locationicon} alt=""/>
           <CardText>
             You can change your business's registered address here. Must be an
             address in Singapore and cannot be a PO.Box number.
           </CardText>
-          <a href="#" onClick={showPopup5}>
+          <Button onClick={showPopup5}>
             Change registered address
-          </a>
+          </Button>
         </Card>
       </Col>
     </Row>

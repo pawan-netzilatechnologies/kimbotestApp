@@ -57,7 +57,7 @@ export default function Subscription({ show9, setShow9 }) {
             <CardText>2.Refer to our terms of cancelation</CardText>
           </Card>
           <Card className="popup-btn">
-            <a href="#">Contact us</a>
+            <Button className="contact-link">Contact us</Button>
             <Button onClick={saveData}>Agree and submit</Button>
           </Card>
         </Form>

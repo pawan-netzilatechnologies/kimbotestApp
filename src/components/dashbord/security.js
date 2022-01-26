@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardText, CardTitle } from "reactstrap";
+import { Button, Card, CardText, CardTitle } from "reactstrap";
 
 export default function Security() {
   return (
@@ -24,10 +24,10 @@ export default function Security() {
           </CardText>
         </Card>
         <Card className="profile-security-btn">
-          <a href="#">Learn more</a>
-          <a href="#" className="get-started-btn">
+          <Button className="learn-btn">Learn more</Button>
+          <Button className="get-started-btn">
             Get started
-          </a>
+          </Button>
         </Card>
       </Card>
       <Card className="profile-detail profile-login-device">

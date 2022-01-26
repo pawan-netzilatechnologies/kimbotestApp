@@ -24,10 +24,10 @@ export default function Payment() {
       {show9 ? <Subscription show9={show9} setShow9={setShow9} /> : ""}
       <Card className="current-plan-section">
         <Card className="current-plan-header">
-          <a href="#" className="active">
+          <span className="active">
             Current Plan
-          </a>
-          <a href="#">Free</a>
+          </span>
+          <span>Free</span>
         </Card>
         <Row>
           <Col xs="6">
@@ -90,10 +90,10 @@ export default function Payment() {
           </Col>
 
           <Card className="current-plan-bottom">
-            <a href="#">Contact us</a>
-            <a href="#" className="current-plan-checkout">
+            <Button>Contact us</Button>
+            <Button className="current-plan-checkout">
               Checkout
-            </a>
+            </Button>
           </Card>
         </Row>
       </Card>
@@ -103,10 +103,10 @@ export default function Payment() {
           <Col xs="6">
             <Card className="monthly-yearly-tabs bi-block">
               <Card className="tabs-links">
-                <a href="#" className="tab-active">
+                <span className="tab-active">
                   Monthly
-                </a>
-                <a href="#">Yearly</a>
+                </span>
+                <span>Yearly</span>
               </Card>
               <Card className="tabs-detail">
                 <CardTitle tag="h4" className="text-center">

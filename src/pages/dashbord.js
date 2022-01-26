@@ -13,19 +13,19 @@ export default function Dashbord() {
         <Card className="detailpage-bar">
           <List>
             <li className="active">
-              <a href="#">Details</a>
+              <span>Details</span>
             </li>
             <li>
-              <a href="#">Payments</a>
+              <span>Payments</span>
             </li>
             <li>
-              <a href="#">Security</a>
+              <span>Security</span>
             </li>
             <li>
-              <a href="#">Verification</a>
+              <span>Verification</span>
             </li>
             <li>
-              <a href="#">Account</a>
+              <span>Account</span>
             </li>
           </List>
         </Card>

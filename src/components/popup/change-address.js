@@ -74,7 +74,7 @@ export default function ChangeAddress({ show5, setShow5 }) {
             </CardText>
           </Card>
           <Card className="popup-btn">
-            <a href="#">Contact us</a>
+            <Button className="contact-link">Contact us</Button>
             <Button>Agree and submit</Button>
           </Card>
         </Form>

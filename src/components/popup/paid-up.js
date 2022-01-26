@@ -37,14 +37,13 @@ export default function PaidUp({ show6, setShow6 }) {
       <ModalHeader charCode="Y" toggle={closeHandle}>
         <strong>Amend paid-up capital</strong>
         <div>
-          <a
-            href="#"
+          <span
             id="TooltipExample"
             className="form-tooltip"
             onMouseOver={showTooltip}
           >
             !
-          </a>
+          </span>
 
           <Tooltip
             flip
@@ -92,7 +91,7 @@ export default function PaidUp({ show6, setShow6 }) {
             </CardText>
           </Card>
           <Card className="popup-btn">
-            <a href="#">Contact us</a>
+            <Button className="contact-link">Contact us</Button>
             <Button onClick={savedata}>Agree and submit</Button>
           </Card>
         </Form>

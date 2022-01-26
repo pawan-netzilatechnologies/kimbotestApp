@@ -1,5 +1,5 @@
 import react from "react";
-import { Card, CardTitle, Form, Input, FormGroup, Table } from "reactstrap";
+import { Card, CardTitle, Form, Input, FormGroup, Table, Button } from "reactstrap";
 import fileicon from "../../images/file-upload-icon.png";
 import editicon from "../../images/edit-icon.png";
 import downloadicon from "../../images/download-icon.png";
@@ -14,7 +14,7 @@ export default function File() {
             <Input id="exampleFile" name="file" type="file" />
           </Form>
           <Card className="file-upload-detail">
-            <img src={fileicon} />
+            <img src={fileicon} alt="" />
             <span>
               <h5>
                 <strong>Drop or Select file</strong>
@@ -55,12 +55,12 @@ export default function File() {
               <td>319kb</td>
               <td>9-12-2021</td>
               <td className="edit-download-icon">
-                <a href="#">
-                  <img src={editicon} />
-                </a>
-                <a href="#">
-                  <img src={downloadicon} />
-                </a>
+                <Button>
+                  <img src={editicon} alt="" />
+                </Button>
+                <Button>
+                  <img src={downloadicon} alt="" />
+                </Button>
               </td>
             </tr>
             <tr>
@@ -68,12 +68,12 @@ export default function File() {
               <td>319kb</td>
               <td>9-12-2021</td>
               <td className="edit-download-icon">
-                <a href="#">
-                  <img src={editicon} />
-                </a>
-                <a href="#">
-                  <img src={downloadicon} />
-                </a>
+                <Button>
+                  <img src={editicon} alt="" />
+                </Button>
+                <Button>
+                  <img src={downloadicon} alt="" />
+                </Button>
               </td>
             </tr>
             <tr>
@@ -81,12 +81,12 @@ export default function File() {
               <td>319kb</td>
               <td>9-12-2021</td>
               <td className="edit-download-icon">
-                <a href="#">
-                  <img src={editicon} />
-                </a>
-                <a href="#">
-                  <img src={downloadicon} />
-                </a>
+                <Button>
+                  <img src={editicon} alt="" />
+                </Button>
+                <Button>
+                  <img src={downloadicon} alt="" />
+                </Button>
               </td>
             </tr>
           </tbody>

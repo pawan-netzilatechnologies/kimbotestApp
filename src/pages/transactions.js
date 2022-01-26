@@ -9,7 +9,7 @@ export default function Transactions() {
         <Card className="detailpage-bar">
           <List>
             <li className="active">
-              <a href="#">Transactions</a>
+              <span>Transactions</span>
             </li>
           </List>
         </Card>
@@ -41,7 +41,7 @@ export default function Transactions() {
                     from first name last name
                   </td>
                   <td>
-                    <img src={pdficon} />
+                    <img src={pdficon} alt=""/>
                   </td>
                   <td>129.00</td>
                   <td>1,536</td>
