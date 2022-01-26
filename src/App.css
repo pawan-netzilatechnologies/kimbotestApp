@@ -299,6 +299,7 @@ td {	border: none !important;}
 .steps-form form.four-step-address div.mb-3 {	width: 100%;}
 .contact-link {	background: none !important;	color: blue !important;	padding: 0 !important;	font-weight: normal !important;}
 .contact-link:hover, .contact-link:focus {		color: #7f0019 !important;}
+.detailpage-bar ul li.active span {	border-color: #000;}
 
 @media screen and (max-width: 1200px) {
 .sidebar-block button {	font-size: 16px;	line-height: 22px;}
