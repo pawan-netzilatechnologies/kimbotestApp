@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, Container, List } from "reactstrap";
 import Detail from "../components/detail/details";
 import File from "../components/detail/files";
@@ -8,6 +8,7 @@ import Task from "../components/detail/tasks";
 
 export default function DetailPage() {
   const [steps, setSteps] = useState(1);
+  const [list, setList] = useState([]);
   const handleSteps = (ev, stp) => {
     var dots = document.querySelectorAll("li");
     for (var n = 0; n < dots.length; ++n) {
@@ -34,26 +35,31 @@ export default function DetailPage() {
         return <Detail />;
     }
   };
+  const renderData = (list) => {
+    return list.map((value, i) => {
+      return( 
+        <li className={`dt ${ i ===0 ? "active" : ''}`} onClick={(ev) => handleSteps(ev,  i+1)} key={i}>
+          <span>{value}</span>
+        </li>
+      );
+    })
+  }
+  useEffect(()=>{
+    const lists = [
+      "Details",
+      "Payments",
+      "Files",
+      "Tasks",
+      "Invite"
+    ];
+    setList(lists);
+   },[])
   return (
     <Card className="section-main">
       <Container>
         <Card className="detailpage-bar">
           <List>
-            <li className="active" onClick={(ev) => handleSteps(ev, 1)}>
-              <span>Details</span>
-            </li>
-            <li onClick={(ev) => handleSteps(ev, 2)}>
-              <span>Payments</span>
-            </li>
-            <li onClick={(ev) => handleSteps(ev, 3)}>
-              <span>Files</span>
-            </li>
-            <li onClick={(ev) => handleSteps(ev, 4)}>
-              <span>Tasks</span>
-            </li>
-            <li onClick={(ev) => handleSteps(ev, 5)}>
-              <span>Invite</span>
-            </li>
+          {renderData(list)}
           </List>
         </Card>
         <Card className="detailpage-main">{renderFunction(steps)}</Card>

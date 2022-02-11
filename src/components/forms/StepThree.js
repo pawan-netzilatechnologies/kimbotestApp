@@ -1,62 +1,27 @@
-import react, { useState } from "react";
+import { useState } from "react";
 import {
   Card,
   CardTitle,
   CardText,
   Row,
   Col,
-  Form,
-  FormGroup,
-  Input,
-  Button,
   Tooltip,
 } from "reactstrap";
 import icon3 from "../../images/step-icon-3.jpg";
 import icon4 from "../../images/step-icon-4.jpg";
 import icon5 from "../../images/step-icon-5.jpg";
-
+import Forms from './Form';
+import Image from "../../components/Image";
 export default function StepThree({myform, setSteps, setMyForm}) {
   const [open, setOpen] = useState(false);
-  const [firstError, setFirstError] = useState(false);
-  const [lastError, setLastError] = useState(false);
-  const [emailError, setEmailError] = useState(false);
-  const [mobError, setMobError] = useState(false);
-  const [nationError, setNationError] = useState(false);
+  console.log(myform);
   const showTooltip = () => {
     setOpen(!open);
   };
-  const saveData = () => {
-    setFirstError(false)
-    setLastError(false);
-    setEmailError(false)
-    setMobError(false)
-    setNationError(false)
-    var error = false;
-    if(myform.directrfirstName == ""){
-      setFirstError(true)
-      error= true;
-    } 
-    if(myform.directrlastName == "" ){
-      setLastError(true)
-      error= true;
-    } 
-    if(myform.directremail == ""){
-      setEmailError(true)
-      error= true;
-    }
-    if(myform.directrmobilenumber ==""){
-      setMobError(true)
-      error= true;
-    } 
-    if(myform.directrnationality == ""){
-      setNationError(true)
-      error= true;
-    }
-    if(error == false){
-      setSteps(4)
-    }
+  const nextStep = () => {
+    setSteps(4)  
   }
-  const backStep = () =>{
+  const backStep = () => {
     setSteps(2)  
   }
   const handleOwnerChange = (ev, value, name) => {
@@ -78,27 +43,6 @@ export default function StepThree({myform, setSteps, setMyForm}) {
     }
     ev.currentTarget.classList.add("active");
     setMyForm({...myform , [name]: value})
-  }
-  const handleInputChange = (ev, name) => {
-    setMyForm({...myform , [name]: ev.target.value})
-  }
-  const validateEmail = (email) => {
-    return email.match(
-      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    );
-  };
-  const handleCheckEmail = () => {
-    console.log(validateEmail(myform.email));
-    if(myform.email == ""){
-      setEmailError(true)
-      return false;
-    }else if(!validateEmail(myform.email)){
-      console.log("erro");
-      setEmailError(true)
-      return false; 
-    }else{
-      setEmailError(false)
-    }
   }
   return (
     <Card className="steps-block">
@@ -139,13 +83,13 @@ export default function StepThree({myform, setSteps, setMyForm}) {
       <Row>
         <Col xs="6">
           <Card className="steps-detail-block firstStep active" onClick={(ev) => handleOwnerChange(ev, true, 'permanentResident')}>
-            <img src={icon3} alt=""/>
+            <Image src={icon3} alt=""/>
             <CardText>I am a Singaporean/PR</CardText>
           </Card>
         </Col>
         <Col xs="6">
           <Card className="steps-detail-block firstStep" onClick={(ev) => handleOwnerChange(ev, false, 'permanentResident')}>
-            <img src={icon5} alt=""/>
+            <Image src={icon5} alt=""/>
             <CardText>I am a foreigner</CardText>
           </Card>
         </Col>
@@ -187,7 +131,7 @@ export default function StepThree({myform, setSteps, setMyForm}) {
         <Row>
           <Col xs="6">
             <Card className="steps-detail-block secondStep active" onClick={(ev) => handleShareChange(ev, true, 'directors')}>
-              <img src={icon3} alt=""/>
+              <Image src={icon3} alt=""/>
               <CardText>
                 Yes, there are other
                 <br />
@@ -197,7 +141,7 @@ export default function StepThree({myform, setSteps, setMyForm}) {
           </Col>
           <Col xs="6">
             <Card className="steps-detail-block secondStep" onClick={(ev) => handleShareChange(ev, false, 'directors')}>
-              <img src={icon4} alt=""/>
+              <Image src={icon4} alt=""/>
               <CardText>
                 No, I am the only
                 <br />
@@ -214,45 +158,23 @@ export default function StepThree({myform, setSteps, setMyForm}) {
             <strong>Information about other director</strong>
           </CardTitle>
         </Card>
-        <Form>
-          <FormGroup className="mob-full">
-            <div className="shareholder-fields">
-              <Input name="" value={myform.directrfirstName} invalid={firstError} onChange={(ev) => handleInputChange(ev, 'directrfirstName')} placeholder="First Name" type="text" />
-              {firstError ? <p className="required-text">First name is required</p> : ''}
-            </div>
-            <div className="shareholder-fields">
-              <Input name=""  value={myform.directrlastName} invalid={lastError} onChange={(ev) => handleInputChange(ev, 'directrlastName')} placeholder="Last name" type="text" />
-              {lastError ? <p className="required-text">Last name is required</p> : ''}            
-            </div> 
-          </FormGroup>
-          <FormGroup className="mob-full">
-            <div className="email-check">
-              <div>
-                <Input name="" value={myform.directremail} invalid={emailError} placeholder="Email address" type="email"  onChange={(ev) => handleInputChange(ev, 'directremail')}/>
-                {emailError ? <p className="required-text">Email seems to be valid</p> : ''} 
-              </div>
-              <Button onClick={handleCheckEmail}>Check</Button>
-            </div>
-            <div className="shareholder-fields">
-              <Input name="" value={myform.directrmobilenumber} invalid={mobError} placeholder="Mobile number" type="text" onChange={(ev) => handleInputChange(ev, 'directrmobilenumber')}/>
-              {mobError ? <p className="required-text">Mobile number is required</p> : ''}    
-            </div>
-          </FormGroup>
-          <FormGroup className="mob-full">
-            <div className="shareholder-fields">
-              <Input name="" value={myform.directrnationality}  invalid={nationError} placeholder="Nationality" type="text" onChange={(ev) => handleInputChange(ev, 'directrnationality')}/>
-              {nationError ? <p className="required-text">Nationality is required</p> : ''}
-            </div>
-            <div className="add-another">
-              <Button>Add another</Button>
-            </div>
-          </FormGroup>
-
-          <FormGroup className="step-from-btn">
-            <Button onClick={backStep}>Back</Button>
-            <Button onClick={saveData}>Save & Next</Button>
-          </FormGroup>
-        </Form>
+        <Forms 
+            firstName={myform.directrfirstName} 
+            lastName={myform.directrlastName} 
+            email={myform.directremail}
+            mobilenumber={myform.directrmobilenumber}
+            nationality={myform.directrnationality}
+            Name1='directrfirstName' 
+            Name2='directrlastName'
+            Name3='directremail'
+            Name4='directrmobilenumber'
+            Name5='directrnationality'
+            setMyForm={setMyForm}
+            myform={myform}
+            backStep={backStep}
+            nextStep={nextStep}
+            shareholderAr='directorAr'
+          />
       </Card>
     </Card>
   );

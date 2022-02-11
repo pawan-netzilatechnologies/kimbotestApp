@@ -19,7 +19,7 @@ export default function Verification() {
           indicates to what extent we have been able to verify who a user says
           they are. kimbocorp users who are the safest to work with are those
           who put in more effort to verify themselves to become highly trusted
-          users. <a href="#">Learn more.</a>
+          users. <a href="/">Learn more.</a>
         </CardText>
       </Card>
 
@@ -73,7 +73,7 @@ export default function Verification() {
                 <li>
                   <label>Facebook</label>
                   <span className="point-facebook point-btn">
-                    <img src={facebookicon} /> Connect facebook
+                    <img src={facebookicon} alt="" /> Connect facebook
                   </span>
                   <span className="point-value">20 points</span>
                 </li>
@@ -85,7 +85,7 @@ export default function Verification() {
                 <li>
                   <label>Linkedin</label>
                   <span className="point-linkedin point-btn">
-                    <img src={linkeinicon} /> Connect linkedin
+                    <img src={linkeinicon} alt="" /> Connect linkedin
                   </span>
                   <span className="point-value">20 points</span>
                 </li>

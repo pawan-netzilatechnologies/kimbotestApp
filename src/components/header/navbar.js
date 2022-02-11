@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import { useState } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -56,7 +56,7 @@ function Header() {
                     <NavLink href="#">Company</NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink href="#" className="create-new-business">
+                    <NavLink href="/create-new-businesses" className="create-new-business">
                       Create new business
                     </NavLink>
                   </NavItem>
@@ -78,7 +78,7 @@ function Header() {
                           <strong>Account</strong>
                         </li>
                         <li>
-                          <a href="/">View profile</a>
+                          <a href="/profile">View profile</a>
                         </li>
                         <li>
                           <a href="/">Settings</a>
@@ -89,7 +89,7 @@ function Header() {
                           <strong>Finances</strong>
                         </li>
                         <li>
-                          <a href="/">Transaction history</a>
+                          <a href="/transactions">Transaction history</a>
                         </li>
                       </List>
                       <List>
@@ -97,7 +97,7 @@ function Header() {
                           <a href="/">Support</a>
                         </li>
                         <li>
-                          <a href="/">Invite friends</a>
+                          <a href="/create-new-businesses">Invite friends</a>
                         </li>
                         <li>
                           <a href="/">Logout</a>

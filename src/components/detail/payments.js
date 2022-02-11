@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import { useState } from "react";
 import {
   Card,
   CardText,
@@ -16,9 +16,20 @@ import Subscription from "../popup/subscription";
 
 export default function Payment() {
   const [show9, setShow9] = useState(false);
+  const [plan, setPlan] = useState('Monthly');
   const showPopup9 = () => {
     setShow9(true);
   };
+  const planChange = (ev, pln) => {
+    setPlan(pln)
+    var dots = document.getElementsByClassName("plan");
+    for (var n = 0; n < dots.length; ++n) {
+      if (dots[n] !== this) {
+        dots[n].classList.remove("tab-active");
+      }
+    }
+    ev.currentTarget.classList.add("tab-active");
+  }
   return (
     <>
       {show9 ? <Subscription show9={show9} setShow9={setShow9} /> : ""}
@@ -103,10 +114,10 @@ export default function Payment() {
           <Col xs="6">
             <Card className="monthly-yearly-tabs bi-block">
               <Card className="tabs-links">
-                <span className="tab-active">
+                <span className="plan tab-active" onClick={(ev) => planChange(ev , 'Monthly')}>
                   Monthly
                 </span>
-                <span>Yearly</span>
+                <span className="plan" onClick={(ev) => planChange(ev ,'Yearly')}>Yearly</span>
               </Card>
               <Card className="tabs-detail">
                 <CardTitle tag="h4" className="text-center">
@@ -116,10 +127,22 @@ export default function Payment() {
                   Execute your business plan and receive revenues into adigital
                   bank account.
                 </CardText>
+                { plan ==="Monthly" ?
+                <>
                 <CardTitle tag="h4" className="text-center">
                   USD 329
                 </CardTitle>
                 <CardText className="text-center">per month</CardText>
+                </>
+                : 
+                <>
+                <CardTitle tag="h4" className="text-center">
+                  USD 3600
+                </CardTitle>
+                <CardText className="text-center">per year</CardText>
+                </>
+                }
+                
                 <List>
                   <li>
                     Mandatory corporate secretary and nominee director
@@ -212,9 +235,9 @@ export default function Payment() {
                     className="checkout-address"
                   />
                 </FormGroup>
-                <a href="#" className="address-manually">
+                <p className="address-manually">
                   Enter address manually
-                </a>
+                </p>
                 <FormGroup check>
                   <Input type="checkbox" />
                   <Label check>

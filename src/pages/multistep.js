@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Container, Card, List } from "reactstrap";
 import StepOne from "../components/forms/StepOne";
 import StepTwo from "../components/forms/StepTwo";
@@ -7,6 +7,7 @@ import StepFour from "../components/forms/StepFour";
 
 export default function Multistep() {
   const [steps, setSteps] = useState(1);
+  const [list, setList] = useState([]);
   const [myform, setMyForm] = useState({
     companyName: '',
     componyActivity: '',
@@ -26,9 +27,19 @@ export default function Multistep() {
     directremail: '',
     directrmobilenumber: '',
     directrnationality: '',
-    address: ''
+    address: '',
+    shareholderAr: [],
+    directorAr: []
   })
- 
+ useEffect(()=>{
+  const lists = [
+    "Business information",
+    "Directors",
+    "Shareholders",
+    "Address",
+  ];
+  setList(lists);
+ },[])
   const handleSteps = (ev, stp) => {
     if(steps > stp) {
       setSteps(stp);
@@ -40,7 +51,7 @@ export default function Multistep() {
       if (n < stp) {
         dots[n].classList.add("active");
       }else{
-      dots[n].classList.remove("active");
+        dots[n].classList.remove("active");
       }
     }
   }
@@ -59,31 +70,23 @@ export default function Multistep() {
         return <StepOne setMyForm={setMyForm} myform={myform} setSteps={setSteps} />;
     }
   };
+  const renderData = (list) => {
+    return list.map((value, i) => {
+      return( 
+        <li className={`allSteps ${ i ===0 ? "active" : ''}`} onClick={(ev) => handleSteps(ev, i+1)} key={i}>
+          <div>
+            <span>{i+1}</span>{value}
+          </div>
+        </li>
+      );
+    })
+  }
   return (
     <Card className="multistep-section">
       <Container>
         <Card className="steps-bar">
           <List>
-            <li className="allSteps active" onClick={(ev) => handleSteps(ev, 1)}>
-              <div>
-                <span>1</span>Business information
-              </div>
-            </li>
-            <li className="allSteps" onClick={(ev) => handleSteps(ev, 2)}>
-              <div>
-                <span>2</span>Directors
-              </div>
-            </li>
-            <li className="allSteps" onClick={(ev) => handleSteps(ev, 3)}>
-              <div>
-                <span>3</span>Shareholders
-              </div>
-            </li>
-            <li className="allSteps" onClick={(ev) => handleSteps(ev, 4)}>
-              <div>
-                <span>4</span>Address
-              </div>
-            </li>
+          {renderData(list)}
           </List>
         </Card>
         <Card className="steps-block-main">{renderFunction(steps)}</Card>

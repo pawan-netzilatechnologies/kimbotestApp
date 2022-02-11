@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import { useState } from "react";
 import {
   Card,
   CardText,
@@ -26,6 +26,7 @@ import ChangeAddress from "../popup/change-address";
 import PaidUp from "../popup/paid-up";
 import Share from "../popup/share";
 import Information from "../popup/information";
+import Image from "../../components/Image";
 
 export default function Detail() {
   const [show, setShow] = useState(false);
@@ -202,7 +203,7 @@ export default function Detail() {
             <tbody>
               <tr>
                 <td className="text-center">
-                  200,000 <img src={shareedit} alt=""/>
+                  200,000 <Image src={shareedit} alt=""/>
                 </td>
                 <td className="text-center">200,000</td>
                 <td className="text-center">USD</td>
@@ -235,7 +236,7 @@ export default function Detail() {
             <tbody>
               <tr>
                 <td>
-                  200,000 <img src={shareedit} alt=""/>
+                  200,000 <Image src={shareedit} alt=""/>
                 </td>
 
                 <td>USD</td>
@@ -264,15 +265,15 @@ export default function Detail() {
             <li>
               <h4>Ultimate beneficial owner</h4>
               <span>
-                <img src={member1} alt=""/>
+                <Image src={member1} alt=""/>
               </span>
             </li>
             <li>
               <h4>Ultimate beneficial owner</h4>
               <span>
-                <img src={member1} alt=""/>
-                <img src={member2} alt=""/>
-                <img src={member3} alt=""/>
+                <Image src={member1} alt=""/>
+                <Image src={member2} alt=""/>
+                <Image src={member3} alt=""/>
               </span>
             </li>
           </List>
@@ -280,7 +281,7 @@ export default function Detail() {
 
         <Card className="sidebar-block text-center">
           <CardTitle tag="h3">Increase share capital</CardTitle>
-          <img src={shareicon} alt=""/>
+          <Image src={shareicon} alt=""/>
           <CardText>
             Share capital consists of all funds raised by a company in exchange
             for common or preferred shares of stock. A company that wishes to
@@ -292,7 +293,7 @@ export default function Detail() {
 
         <Card className="sidebar-block text-center">
           <CardTitle tag="h3">Change registered address</CardTitle>
-          <img src={locationicon} alt=""/>
+          <Image src={locationicon} alt=""/>
           <CardText>
             You can change your business's registered address here. Must be an
             address in Singapore and cannot be a PO.Box number.

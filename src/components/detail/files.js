@@ -1,4 +1,3 @@
-import react from "react";
 import { Card, CardTitle, Form, Input, FormGroup, Table, Button } from "reactstrap";
 import fileicon from "../../images/file-upload-icon.png";
 import editicon from "../../images/edit-icon.png";

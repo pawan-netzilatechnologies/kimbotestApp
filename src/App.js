@@ -17,8 +17,8 @@ function App() {
       <React.StrictMode>
         <Router>
           <Routes>
-            <Route path="/" element={<Memberspage />} />
-            <Route path="/multistep" element={<Multistep />} />
+            <Route path="/" element={<Multistep />} />
+            <Route path="/members" element={<Memberspage />} />
             <Route path="/detailpage" element={<DetailPage />} />
             <Route path="/dashbord" element={<Dashbord />} />
             <Route path="/profile" element={<Profile />} />

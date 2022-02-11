@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Card,
   CardTitle,
@@ -11,49 +11,78 @@ import {
   Button,
   Tooltip,
 } from "reactstrap";
+import axios from "axios";
 import icon1 from "../../images/step-icon-1.jpg";
 import icon2 from "../../images/step-icon-2.jpg";
 import icon3 from "../../images/step-icon-3.jpg";
 import icon4 from "../../images/step-icon-4.jpg";
-
+import Image from "../../components/Image";
 export default function StepOne({myform, setSteps, setMyForm}) {
   const [open, setOpen] = useState(false);
-  const [checkBusiness, setCheckBusiness] = useState("existing");
+  const [checkBusiness, setCheckBusiness] = useState("new");
   const [error, setError] = useState(false);
   const [activityError, setActivityError] = useState(false);
   const [uenError, setUenError] = useState(false);
+  const [validCom, setValidCom] = useState(false);
+  const [activityValid, setActivityValid] = useState(false);
+  const [uenValid, setUenValid] = useState(false);
+  const [activity, setActivity] = useState([]);
   const handleInputChange = (ev, name) => {
     setMyForm({...myform , [name]: ev.target.value})
+    if(name === 'companyName'){
+      if(ev.target.value === ""){
+        setError(true)
+      }else{
+        setError(false)
+        setValidCom(true)
+      }
+    }
+    if(name === 'componyActivity'){
+      if(ev.target.value === ""){
+        setActivityError(true)
+      }else{
+        setActivityError(false)
+        setActivityValid(true)
+      }
+    }
+    if(name === 'uen'){
+      if(ev.target.value === ""){
+        setUenError(true)
+      }else{
+        setUenError(false)
+        setUenValid(true)
+      }
+    }
   }
   const showTooltip = () => {
     setOpen(!open);
   };
   const saveData = () => {
     var error =false;
-    if(checkBusiness == 'existing'){
-      if(myform.companyName == "") {
+    if(checkBusiness === 'existing'){
+      if(myform.companyName === "") {
         setError(true)
         error = true;
       }
-       if(myform.uen == "") {
+       if(myform.uen === "") {
         setUenError(true);
         error = true;
       }
-       if(myform.componyActivity == "") {
+       if(myform.componyActivity === "") {
         setActivityError(true);
         error = true;
       }
     }else{
-      if(myform.companyName == "") {
+      if(myform.companyName === "") {
         setError(true)
         error = true;
       }
-      if(myform.componyActivity == "") {
+      if(myform.componyActivity === "") {
         setActivityError(true);
         error = true;
       }
     }
-    if(error == false) {
+    if(error === false) {
       setSteps(2)  
     }
   }
@@ -71,8 +100,21 @@ export default function StepOne({myform, setSteps, setMyForm}) {
     ev.currentTarget.classList.add("active");
   }
   const handleCheckName = () => {
-    if(myform.companyName == "") {
+    if(myform.companyName === "") {
+      setUenError(true)
+    }else{
+      axios.post(' http://localhost:8000/checkComponyName', {name: myform.companyName}).then((response)=>{
+        console.log(response);
+      })
+    }
+  }
+  const handleCheckUen = () => {
+    if(myform.uen === "") {
       setError(true)
+    }else{
+      axios.post(' http://localhost:8000/checkuen', {name: myform.uen}).then((response)=>{
+        console.log(response);
+      })
     }
   }
   const handleCorporate = (ev, value, name) =>{
@@ -85,6 +127,24 @@ export default function StepOne({myform, setSteps, setMyForm}) {
     ev.currentTarget.classList.add("active");
     setMyForm({...myform , [name]: value})
   }
+  const renderOption = (activity) => {
+    return activity.map((value, i) => {
+      return(
+        <option value={value} key={i}>{value}</option>
+      )
+    })
+  }
+  useEffect(()=>{
+    const allActivity = [
+      'SSIC - Company activity',
+      'SSIC - Company activity-1',
+      'SSIC - Company activity-2',
+      'SSIC - Company activity-3',
+      'SSIC - Company activity-4',
+      'SSIC - Company activity-5',
+    ];
+    setActivity(allActivity);
+  },[]);
   return (
     <Card className="steps-block">
       <Card className="section-title">
@@ -95,8 +155,8 @@ export default function StepOne({myform, setSteps, setMyForm}) {
       </Card>
       <Row>
         <Col xs="6">
-          <Card className="steps-detail-block firstStep active" onClick={(ev) => selectValue(ev, "existing")}>
-            <img src={icon1} alt="" />
+          <Card className="steps-detail-block firstStep" onClick={(ev) => selectValue(ev, "existing")}>
+            <Image src={icon1} alt="" />
             <CardText>
               This is an existing <br />
               business already <br />
@@ -105,8 +165,8 @@ export default function StepOne({myform, setSteps, setMyForm}) {
           </Card>
         </Col>
         <Col xs="6">
-          <Card className="steps-detail-block firstStep" onClick={(ev) => selectValue(ev, "new")}>
-            <img src={icon2} alt="" />
+          <Card className="steps-detail-block firstStep active" onClick={(ev) => selectValue(ev, "new")}>
+            <Image src={icon2} alt="" />
             <CardText>
               This is a new business <br />
               that is not yet <br />
@@ -115,7 +175,9 @@ export default function StepOne({myform, setSteps, setMyForm}) {
           </Card>
         </Col>
       </Row>
-    {checkBusiness == "new" ? 
+    {
+      checkBusiness === "new" 
+    ? 
       <Card className="steps-form">
         <Card className="section-title">
           <CardTitle tag="h2">
@@ -132,6 +194,7 @@ export default function StepOne({myform, setSteps, setMyForm}) {
                 value={myform.companyName}
                 onChange={(ev) => handleInputChange(ev, 'companyName')}
                 invalid={error}
+                valid={validCom}
               />
               {error ? <p className="required-text">"It seems like it is available in Singapore", or "Please enter
               another name, it seems like it is not available in Singapore"</p> : ''}
@@ -141,12 +204,15 @@ export default function StepOne({myform, setSteps, setMyForm}) {
           </FormGroup>
           
           <FormGroup>
-            <Input id="exampleSelect" invalid={activityError} name="select" type="select" value={myform.componyActivity}  onChange={(ev) => handleInputChange(ev, 'componyActivity')}>
-              <option value="SSIC - Company activity">SSIC - Company activity</option>
-              <option value="SSIC - Company activity-1">SSIC - Company activity-1</option>
-              <option value="SSIC - Company activity-2">SSIC - Company activity-2</option>
-              <option value="SSIC - Company activity-3">SSIC - Company activity-3</option>
-              <option value="SSIC - Company activity-4">SSIC - Company activity-4</option>
+            <Input id="exampleSelect"
+              valid={activityValid}
+              invalid={activityError}
+              name="select"
+              type="select"
+              value={myform.componyActivity} 
+              onChange={(ev) => handleInputChange(ev, 'componyActivity')}
+            >
+              {renderOption(activity)}
             </Input>
             <div>
               <span
@@ -195,7 +261,7 @@ export default function StepOne({myform, setSteps, setMyForm}) {
         <Row>
           <Col xs="6">
             <Card className="steps-detail-block secondStep active" onClick={(ev) => {handleCorporate(ev, true, 'incorporated')}}>
-              <img src={icon3} alt=""/>
+              <Image src={icon3} alt=""/>
               <CardText>
                 Yes, it is incorporated in <br />
                 Singapore
@@ -204,7 +270,7 @@ export default function StepOne({myform, setSteps, setMyForm}) {
           </Col>
           <Col xs="6">
             <Card className="steps-detail-block secondStep" onClick={(ev) => {handleCorporate(ev, false, 'incorporated')}}>
-              <img src={icon4} alt=""/>
+              <Image src={icon4} alt=""/>
               <CardText>
                 No, it is not incorporated <br />
                 in Singapore
@@ -224,26 +290,29 @@ export default function StepOne({myform, setSteps, setMyForm}) {
           <FormGroup className="mob-full">  
               <div className="email-check">
                 <div>
-                  <Input name="" placeholder="UEN" type="text" invalid={uenError} value={myform.uen} onChange={(ev) => handleInputChange(ev, 'uen')}/>
+                  <Input name=""
+                    placeholder="UEN" 
+                    type="text" 
+                    invalid={uenError} 
+                    valid={uenValid} 
+                    value={myform.uen} 
+                    onChange={(ev) => handleInputChange(ev, 'uen')}
+                  />
                   {uenError ? <p className="required-text">UEN is required</p> : ''}
                 </div>
-              <Button onClick={handleCheckName}>Check</Button>
+              <Button onClick={handleCheckUen}>Check</Button>
               </div>
             
             <div className="shareholder-fields"> 
-              <Input name="" placeholder="Company name" invalid={error} type="text" value={myform.companyName} onChange={(ev) => handleInputChange(ev, 'companyName')}/>
+              <Input name="" placeholder="Company name" valid={validCom} invalid={error} type="text" value={myform.companyName} onChange={(ev) => handleInputChange(ev, 'companyName')}/>
               {error ? <p className="required-text">"It seems like it is available in Singapore", or "Please enter
               another name, it seems like it is not available in Singapore"</p> :''}
             </div>
           </FormGroup>
 
           <FormGroup>
-            <Input id="exampleSelect" name="select" invalid={activityError} type="select" value={myform.componyActivity} onChange={(ev) => handleInputChange(ev, 'componyActivity')}>
-              <option>SSIC - Company activity</option>
-              <option>SSIC - Company activity-1</option>
-              <option>SSIC - Company activity-2</option>
-              <option>SSIC - Company activity-3</option>
-              <option>SSIC - Company activity-4</option>
+            <Input id="exampleSelect" name="select" valid={activityValid} invalid={activityError} type="select" value={myform.componyActivity} onChange={(ev) => handleInputChange(ev, 'componyActivity')}>
+            {renderOption(activity)}
             </Input>
             <div>
               <span
@@ -281,7 +350,7 @@ export default function StepOne({myform, setSteps, setMyForm}) {
         </Form>
       </Card>
       </>
-}
+    }
     </Card>
   );
 }

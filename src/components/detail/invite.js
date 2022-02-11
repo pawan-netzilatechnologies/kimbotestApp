@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import { useState } from "react";
 import { Card, CardTitle, Col, Row, Table, CardText, Button } from "reactstrap";
 import NewDirector from "../popup/new-director";
 
